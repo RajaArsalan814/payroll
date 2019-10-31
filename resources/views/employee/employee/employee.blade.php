@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-            Container Lines
-        <small>preview of Container Lines </small>
+            Employee
+        <small>preview of Employee </small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Setup</a></li>
-        <li class="active">Container</li>
+        <li class="active">Employee</li>
       </ol>
     </section>
 
@@ -27,14 +27,14 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Container Lines</h3>
+              <h3 class="box-title">Employee</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-md hidden-xs col-md-offset-7" style="width: 150px;">
                   {{--  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">  --}}
 
                   <div class="input-group-btn">
-                    <a href="{{route('container_line.create')}}" class="btn btn-primary ">Create</a>
+                    <a href="{{route('employee.create')}}" class="btn btn-primary ">Create</a>
                     {{--  <button type="submit" class="btn btn-primary">Create</button>  --}}
                   </div>
                 </div>
@@ -44,27 +44,46 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th> S : No </th>
                   <th>Code</th>
                   <th>Name</th>
-                  <th>Address</th>
+                  <th>Image</th>
+                  <th>Role</th>
+                  <th>Shift</th>
+                  <th>Father Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Hiring Date</th>
+                  <th>Department</th>
+                  <th>Designation</th>
+                  <th>NIC</th>
                   <th>Contact No</th>
-                  <th>Fax No</th>
-                  <th>Email</th>
-                  <th>Url</th>
+                  <th>Employee Type</th>
+                  <th>Bank Name</th>
+                  <th>Bank Branch</th>
+                  <th>Account No</th>
                   <th>Action</th>
                 </tr>
-                @foreach ($container_line as $item)
+                @foreach ($employee as $item)
                 <tr>
-                  <td>{{$item->id}}</td>
+
                   <td>{{$item->code}}</td>
                   <td>{{$item->name}}</td>
-                  <td>{{$item->address}}</td>
+                <td><img src="{{asset('/storage').'/'.$item->image}}" style="height:50px;" alt="Image Error occur"></td>
+                  <td>{{$item->roles->name}}</td>
+                  <td>{{$item->shifts->name}}</td>
+                  <td>{{$item->father_name}}</td>
+                  <td>{{$item->age}}</td>
+                  <td>{{$item->gender}}</td>
+                  <td>{{$item->hiring_date}}</td>
+                  <td>{{$item->departments->name}}</td>
+                  <td>{{$item->designations->name}}</td>
+                  <td>{{$item->nic}}</td>
                   <td>{{$item->contact_no}}</td>
-                  <td>{{$item->fax_no}}</td>
-                  <td>{{$item->email}}</td>
-                  <td>{{$item->url}}</td>
-                  <td><a href="{{route('container_line.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a> </td>
+                  <td>{{$item->employee_type}}</td>
+                  <td>{{$item->bank_name}}</td>
+                  <td>{{$item->bank_branch}}</td>
+                  <td>{{$item->account_no}}</td>
+                  <td><a href="{{route('employee.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a>/<a href="{{route('employee.print',['id'=>$item->id])}}"> <i class="fa fa-print edit"> </i> </a> </td>
                 </tr>
                 @endforeach
               </table>

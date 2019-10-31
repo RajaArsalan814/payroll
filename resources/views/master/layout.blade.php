@@ -424,8 +424,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('container_lines')}}"> Container Lines</a></li>
-            <li ><a href="{{route('charges')}}"> Charges</a></li>
+            <li><a href="{{route('employees')}}"> Employee</a></li>
+            {{-- <li ><a href="{{route('charges')}}"> Charges</a></li>
             <li><a href="{{route('port')}}"> Port</a></li>
             <li><a href="{{route('agent')}}"> Agent</a></li>
             <li class=""><a href="{{route('shipper')}}"> Shipper</a></li>
@@ -433,10 +433,10 @@
             <li><a href="{{route('forwarder')}}"> Forwarder</a></li>
             <li class=""><a href="{{route('vessel')}}">Vessel</a></li>
             <li><a href="{{route('depot')}}"> Depot</a></li>
-            <li><a href="{{route('container')}}"> Container</a></li>
+            <li><a href="{{route('container')}}"> Container</a></li> --}}
           </ul>
         </li>
-        <li class="treeview active">
+        {{-- <li class="treeview active">
             <a href="#">
               <i class="fa fa-edit"></i> <span>Transaction</span>
               <span class="pull-right-container">
@@ -463,7 +463,7 @@
             <ul class="treeview-menu">
               <li><a href="general.html"> Container Stock</a></li>
             </ul>
-        </li>
+        </li> --}}
 
         {{-- <li class="treeview">
           <a href="#">
