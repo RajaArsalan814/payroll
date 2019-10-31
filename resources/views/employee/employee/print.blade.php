@@ -10,7 +10,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-  
+
   .myinput {
   outline: 1;
   border-width: 0 0 1px;
@@ -31,18 +31,32 @@
     </style>
 </head>
 <body>
-<br><br><br>
+<br>
     <div class="container">
-        <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-3  ">
+   
+
+
+       <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-7">
+                    <h2 class="text-center">ANIS APPAREL</h2>
+                    <h6 class="text-center">Plot # 165-166 , Sector 23 , Korangi Industrial Area , Karachi , Pakistan</h6>
+                    <h6 class="text-center">ملازمت کا فارم</h6>
+                </div>
+                <div class="col-md-3    text-center">
                         <div class="form-group ">
                                 <img src="{{asset('/storage').'/'.$employee->image}}" style="height:120px;" alt="Image Error occur">                        
                         </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                         <div class="form-group">
-                                <label for="exampleInputEmail1">Code</label>
+                                <label for="exampleInputEmail1">کارڈ نمبر</label>
+                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->code}}">
+                        </div>
+                </div>
+                <div class="col-md-2">
+                        <div class="form-group">
+                                <label for="exampleInputEmail1">کارڈ نمبر</label>
                                 <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->code}}">
                         </div>
                 </div>
@@ -170,9 +184,9 @@
                                 <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->gender}}">
                         </div>
                 </div>
-        </div>
+        </div> 
             <button  onclick="record_print()" id="printbtn" class="btn btn-primary ">Print</button>
-      
+
     </div>
 </body>
 

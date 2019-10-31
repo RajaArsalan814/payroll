@@ -129,7 +129,7 @@
                     @else
                     <select name="department_id" id="" required class="form-control">
                       <option value="">Select Department</option>
-                        @foreach ($designation as $item)
+                        @foreach ($department as $item)
                         <option
                         value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
@@ -281,6 +281,20 @@
                             <input type="text" name="account_no" required class="form-control" >
                             @endif
                             <span class="text-danger">{{$errors->first('account_no') ?? null}}</span>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                            <label for="father">Address:</label>
+                            @if($isEdit==true)
+                      <textarea name="address" id="" cols="30" rows="5" class="form-control">{{$employee->address}}</textarea>
+                            {{-- <input type="text" name="address" required class="form-control" value="{{$employee->address}}" > --}}
+                            @else
+                            <textarea name="address" id="" class="form-control" cols="30" rows="5"></textarea>
+                            @endif
+                            <span class="text-danger">{{$errors->first('address') ?? null}}</span>
                     </div>
                 </div>
 
