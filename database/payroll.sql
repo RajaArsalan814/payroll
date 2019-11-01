@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2019 at 12:25 PM
+-- Generation Time: Nov 01, 2019 at 10:08 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -77,11 +77,11 @@ CREATE TABLE `employee` (
   `designation_id` int(11) DEFAULT 1,
   `nic` bigint(150) DEFAULT NULL,
   `marital_status` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contact_no` int(11) DEFAULT NULL,
   `employee_type` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `code` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile` int(11) DEFAULT NULL,
+  `mobile` bigint(20) DEFAULT NULL,
   `bank_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bank_branch` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role_id` int(11) DEFAULT 1,
@@ -99,8 +99,8 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `age`, `image`, `hiring_date`, `name`, `father_name`, `department_id`, `designation_id`, `nic`, `marital_status`, `address`, `contact_no`, `employee_type`, `code`, `mobile`, `bank_name`, `bank_branch`, `role_id`, `shift_id`, `created_at`, `date_of_birth`, `account_no`, `confirmation_date`, `gender`, `updated_at`) VALUES
-(7, 34, '9WmleSvzqttpdYU3c5TAG6J5C5x8Mztrzy5YLHTx.jpeg', '2019-10-09', 'asd', 'ASD', 1, 2, 2132314, 'single', NULL, 5465654, 'Temporary', '1235', 654654, 'asd', 'ASDASD', 2, 1, '2019-10-31 17:51:04.427100', '2019-10-03', '234234', '2019-10-11', 'male', '2019-10-31 17:51:04.427100'),
-(8, 12, 'o2IrfFhccKiTMpN0hxh6drfs5t6UB44fwAG71rnb.jpeg', '2019-10-11', 'asd', 'ASD', 2, 1, 6545646546546546, 'single', NULL, 32434, 'Permanent', '465', 654654, 'asd', 'asdasd', 1, 1, '2019-10-31 17:58:53.505424', '2019-10-22', '234234', '2019-10-03', 'male', '2019-10-31 18:23:23.179797');
+(9, 23, 'kHdA8wF0ZGoJFeBEL9geYGUKQCK5Rx1Zalhr07Vk.jpeg', '2019-12-01', 'test', 'test name', 1, 1, 4220145874147, 'single', '0', 2136541784, 'Temporary', '4561', 3651425147, 'HBL', '123', 2, 2, '2019-11-02 03:57:21.900871', '2020-01-02', '0002457814785748', '2019-12-03', 'male', '2019-11-02 03:57:21.900871'),
+(10, 22, 'jfpT5AftXodxEIteCuGrV4NJbPBUIQyT5cJTB1Jp.jpeg', '2019-01-02', 'another', 'another', 1, 1, 1245874587452145, 'single', 'house : 2300 Defence Karachi', 2135241425, 'Permanent', '1452', 3241454784, 'HBL', '12', 1, 1, '2019-11-02 04:00:53.379067', '2019-01-04', '1211458745874512', '2020-01-03', 'male', '2019-11-02 04:00:53.379067');
 
 -- --------------------------------------------------------
 
@@ -265,7 +265,7 @@ ALTER TABLE `designation`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `migrations`

@@ -10,12 +10,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-
+            label { float: right;   }
   .myinput {
   outline: 1;
   border-width: 0 0 1px;
   border-color: gray
 }
+
 /* body
 {
     background: skyblue;
@@ -33,7 +34,7 @@
 <body>
 <br>
     <div class="container">
-   
+
 
 
        <div class="row">
@@ -45,18 +46,18 @@
                 </div>
                 <div class="col-md-3    text-center">
                         <div class="form-group ">
-                                <img src="{{asset('/storage').'/'.$employee->image}}" style="height:120px;" alt="Image Error occur">                        
+                                <img src="{{asset('/storage').'/'.$employee->image}}" style="height:120px;" alt="Image Error occur">
                         </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                            <label for="exampleInputEmail1">کارڈ نمبر</label>
+                            <label for="exampleInputEmail1" class="align-right">کارڈ نمبر</label>
                             <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->code}}">
                 </div>
                 </div>
 
                 <div class="col-md-8"></div>
-             
+
                 <div class="col-md-2">
                         <div class="form-group">
                                 <label for="exampleInputEmail1">محترم /محترمہ </label>
@@ -65,133 +66,184 @@
                 </div>
 
                 <div class="col-md-2">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">تاریخ</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->hiring_date}}">
-                    </div>
-                    </div>
-    
-                    <div class="col-md-8"></div>
-                 
-                    <div class="col-md-2">
-                            <div class="form-group">
-                                    <label for="exampleInputEmail1">عہدہ</label>
-                                    <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->designations->name}}">
-                            </div>
-                    </div>
-
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Name</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->name}}">
-                        </div>
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">تاریخ</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{date("Y/m/d")}}">
                 </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Father Name</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->father_name}}">
-                        </div>
-                </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Department Name</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->departments->name}}">
-                        </div>
                 </div>
 
-                <div class="col-md-6">
+
+
+                <div class="col-md-8"></div>
+
+                <div class="col-md-2">
                         <div class="form-group">
-                                <label for="exampleInputEmail1">Designation Name</label>
+                                <label for="exampleInputEmail1">عہدہ </label>
                                 <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->designations->name}}">
                         </div>
+
+                    </div>
+
+                <div class="col-md-12">
+                    <h3 class="text-center">(Personal Data)</h3>
+                    <br>
                 </div>
-                <div class="col-md-6">
+
+                <div class="col-md-4">
                         <div class="form-group">
-                                <label for="exampleInputEmail1">NIC</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->nic}}">
-                        </div>
-                </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Marital Status</label>
+                                <label for="exampleInputEmail1">
+                                        ازدواجی حیثیت
+                                </label>
                                 <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->marital_status}}">
-                        </div>
+                    </div>
+                    </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">پیدائش کی تاریخ</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->date_of_birth}}">
+                </div>
+                </div>
+                <div class="col-md-4">
+                        <div class="form-group">
+                                <label for="exampleInputEmail1"> شوہر/والد</label>
+                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->father_name}}">
+                    </div>
+                    </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">تنخواہ</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->code}}">
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">شعبہ</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->designations->name}}">
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">قومی شناختی نمبر</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->nic}}">
+                </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">تعلیم کی قابلیت</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->code}}">
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">گھر کا نمبر</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->contact_no}}">
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">موبائل نمبر</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->mobile}}">
+                </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">موجودہ پتہ</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->address}}">
+                </div>
+                </div>
+                <div class="col-md-12">
+                        <h3 class="text-center">(Job Experience)</h3>
+                        <br>
+                    </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">عہدہ</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->designations->name}}">
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">سال / مہینہ</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">کمپنی کا نام</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
+                </div>
                 </div>
 
                 <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Address</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->address}}">
-                        </div>
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">تنخواہ</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
+                </div>
                 </div>
                 <div class="col-md-6">
                         <div class="form-group">
-                                <label for="exampleInputEmail1">Contact No</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->contact_no}}">
-                        </div>
+                                <label for="exampleInputEmail1">چھوڑنے کی وجہ</label>
+                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
+                    </div>
+                    </div>
+                <div class="col-md-12">
+                        <h3 class="text-center">(Reference)</h3>
+                        <br>
+                    </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">فون نمبر</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
                 </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Employee Type</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->employee_type}}">
-                        </div>
                 </div>
 
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">کون رشتہ دار ہے؟</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">نام</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
+                </div>
+                </div>
+
+                <div class="col-md-12">
+                    <br>
+                        <h6 class="text-center"> جب آپ دستخط کریں گے ، تو یہ فارم اس وقت دستیاب ہوگا</h6>
+                        <br>
+                    </div>
+
                 <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Mobile</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->mobile}}">
-                        </div>
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">دستخط ڈائریکٹر / مینیجر</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
+                </div>
                 </div>
                 <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Bank Name</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->bank_name}}">
-                        </div>
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">دستخط ملازم</label>
+                            <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" >
                 </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Bank Branch</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->bank_branch}}">
-                        </div>
                 </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Role</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->roles->name}}">
-                        </div>
-                </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Shift</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->shifts->name}}">
-                        </div>
-                </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Data Of Birth</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->date_of_birth}}">
-                        </div>
-                </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Account No</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->account_no}}">
-                        </div>
-                </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Confirmation Date</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->confirmation_date}}">
-                        </div>
-                </div>
-                <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Gender</label>
-                                <input type="text" class="form-control myinput"  id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$employee->gender}}">
-                        </div>
-                </div>
-        </div> 
+
+
+
+
+
+
+        </div>
             <button  onclick="record_print()" id="printbtn" class="btn btn-primary ">Print</button>
 
     </div>

@@ -46,21 +46,13 @@
                 <tr>
                   <th>Code</th>
                   <th>Name</th>
-                  <th>Image</th>
                   <th>Role</th>
                   <th>Shift</th>
-                  <th>Father Name</th>
-                  <th>Age</th>
                   <th>Gender</th>
-                  <th>Hiring Date</th>
                   <th>Department</th>
                   <th>Designation</th>
-                  <th>NIC</th>
                   <th>Contact No</th>
                   <th>Employee Type</th>
-                  <th>Bank Name</th>
-                  <th>Bank Branch</th>
-                  <th>Account No</th>
                   <th>Action</th>
                 </tr>
                 @foreach ($employee as $item)
@@ -68,21 +60,13 @@
 
                   <td>{{$item->code}}</td>
                   <td>{{$item->name}}</td>
-                <td><img src="{{asset('/storage').'/'.$item->image}}" style="height:50px;" alt="Image Error occur"></td>
                   <td>{{$item->roles->name}}</td>
                   <td>{{$item->shifts->name}}</td>
-                  <td>{{$item->father_name}}</td>
-                  <td>{{$item->age}}</td>
                   <td>{{$item->gender}}</td>
-                  <td>{{$item->hiring_date}}</td>
                   <td>{{$item->departments->name}}</td>
                   <td>{{$item->designations->name}}</td>
-                  <td>{{$item->nic}}</td>
                   <td>{{$item->contact_no}}</td>
                   <td>{{$item->employee_type}}</td>
-                  <td>{{$item->bank_name}}</td>
-                  <td>{{$item->bank_branch}}</td>
-                  <td>{{$item->account_no}}</td>
                   <td><a href="{{route('employee.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a>/<a href="{{route('employee.print',['id'=>$item->id])}}"> <i class="fa fa-print edit"> </i> </a> </td>
                 </tr>
                 @endforeach

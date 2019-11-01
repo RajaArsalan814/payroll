@@ -63,7 +63,7 @@ class EmployeeController extends Controller
         if($request->file('file')){
             $image=Storage::disk('public')->put('',$request->file);
         }
-        $employee->image=$image;       
+        $employee->image=$image;
         $employee->hiring_date=$request->hiring_date;
         $employee->date_of_birth=$request->date_of_birth;
         $employee->name=$request->name;
@@ -105,7 +105,7 @@ class EmployeeController extends Controller
         // if($request->file('file')){
         //     $image=Storage::disk('public')->put('',$request->file);
         // }
-        // $employee->image=$image; 
+        // $employee->image=$image;
         $employee->age=$request->age;
         $employee->hiring_date=$request->hiring_date;
         $employee->date_of_birth=$request->date_of_birth;
