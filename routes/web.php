@@ -18,13 +18,30 @@ Route::get('/', function () {
 Route::get('/home',function(){
         return view('home');
 })->name('home');
-
+Route::get('/amount/index','AmountController@index')->name('amount.index');
 Route::get('/employee/create','EmployeeController@create')->name('employee.create');
 Route::get('/employee/index','EmployeeController@index')->name('employees');
 Route::post('/employee/store','EmployeeController@store')->name('employee.store');
 Route::get('/employee/edit/{id}','EmployeeController@edit')->name('employee.edit');
 Route::post('/employee/update/{id}','EmployeeController@update')->name('employee.update');
 Route::get('/employee/print/{id}','EmployeeController@print')->name('employee.print');
+Route::get('/employee/attendance/create','AttendanceController@create')->name('attendance.create');
+Route::get('/employee/attendance/default','AttendanceController@default_attendance')->name('attendance_default');
+
+
+Route::get('/shift/create','ShiftController@create')->name('shift.create');
+Route::get('/shift/index','ShiftController@index')->name('shifts');
+Route::post('/shift/store','ShiftController@store')->name('shift.store');
+Route::get('/shift/edit/{id}','ShiftController@edit')->name('shift.edit');
+Route::post('/shift/update/{id}','ShiftController@update')->name('shift.update');
+
+
+Route::get('/role/create','RoleController@create')->name('role.create');
+Route::get('/role/index','RoleController@index')->name('roles');
+Route::post('/role/store','RoleController@store')->name('role.store');
+Route::get('/role/edit/{id}','RoleController@edit')->name('role.edit');
+Route::post('/role/update/{id}','RoleController@update')->name('role.update');
+
 // Route::get('/shipper/create','ShipperController@create')->name('shipper.create');
 // Route::get('/shipper/index','ShipperController@index')->name('shipper');
 // Route::post('/shipper/store','ShipperController@store')->name('shipper.store');

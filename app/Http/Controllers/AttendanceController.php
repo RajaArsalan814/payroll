@@ -2,32 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Attendance;
 use App\Employee;
 use App\Department;
-use App\Designation;
 use App\Role;
-use App\Subject;
-use App\User;
-use App\Shift;
 use Storage;
+use Illuminate\Http\Request;
 use DB;
-class EmployeeController extends Controller
+class AttendanceController extends Controller
 {
     public function create(){
-
-
-
-
+        $attendance=Attendance::with('employee')->get();
         $isEdit=false;
-        $employee=Employee::all();
-        $department=Department::all();
-        $designation=Designation::all();
-        $role=Role::all();
-        $shift=Shift::all();
 
-        return view('employee.employee.create',compact($isEdit,'isEdit',$employee,'employee',$department,'department',
-        $designation,'designation',$role,'role',$shift,'shift'));
+        return view('employee.employee.attendance',compact($isEdit,'isEdit',$attendance,'attendance'));
+    }
+
+    public function default_attendance(){
+
+        $default_attendance=Attendance::with('employee')->where('check_in','')->orwhere('check_out','')->get();
+        return view('employee.employee.default_attendance',compact($default_attendance,'default_attendance'));
     }
 
     public function index(){

@@ -8,6 +8,6 @@ class Shift extends Model
 {
     protected $table='shift';
 
-    public  $timestamp=false;
+    public  $timestamps=false;
 
 }

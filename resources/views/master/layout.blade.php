@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Rways Group </title>
+  <title>Pay Roll </title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -59,7 +59,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>R</b>ways</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Rways</b>Group</span>
+      <span class="logo-lg"><b>PayRoll</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -424,7 +424,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('employees')}}"> Employee</a></li>
+            <li><a href="{{route('employees')}}">Employee</a></li>
+            <li><a href="{{route('attendance.create')}}">Attendance</a></li>
+            <li><a href="{{route('attendance_default')}}">Default Attendance</a></li>
+            <li><a href="{{route('shifts')}}">Shift</a></li>
+            <li><a href="{{route('roles')}}">Roles</a></li>
             {{-- <li ><a href="{{route('charges')}}"> Charges</a></li>
             <li><a href="{{route('port')}}"> Port</a></li>
             <li><a href="{{route('agent')}}"> Agent</a></li>
@@ -567,7 +571,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.18
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">Rways Group</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">Pay Roll</a>.</strong> All rights
     reserved.
   </footer>
 

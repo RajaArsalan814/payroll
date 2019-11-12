@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-            Employee
-        <small>preview of Employee </small>
+            Employee Attendance Record
+        <small>preview of Employee Default Attendance </small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Setup</a></li>
-        <li class="active">Employee</li>
+        <li class="active">Employee Default Attendance </li>
       </ol>
     </section>
 
@@ -27,14 +27,14 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Employee</h3>
+              <h3 class="box-title">Employee Default Attendance </h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-md hidden-xs col-md-offset-7" style="width: 150px;">
                   {{--  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">  --}}
 
                   <div class="input-group-btn">
-                    <a href="{{route('employee.create')}}" class="btn btn-primary ">Create</a>
+                    {{--  <a href="{{route('employee.create')}}" class="btn btn-primary ">Create</a>  --}}
                     {{--  <button type="submit" class="btn btn-primary">Create</button>  --}}
                   </div>
                 </div>
@@ -44,30 +44,28 @@
             <div class="box-body table-responsive no-padding">
 
 
-                    {{--  <table class="table table-hover">
+                    <table class="table table-hover">
                             <tr>
-                              <th>Name</th>
-                              <th>English</th>
-                              <th>Urdu </th>
-                              <th>Science</th>
-                              <th>Math</th>
-                              <th>Total </th>
+                              <th>Employee Id</th>
+                              <th>Employee Name</th>
+                              <th>Date</th>
+                              <th>Check In </th>
+                              <th>Check Out</th>
                             </tr>
-                            @foreach ($sum_result as $item)
+                            @foreach ($default_attendance as $item)
                             <tr>
-                              <td>{{$item->name}}</td>
-                              <td>{{$item->english}}</td>
-                              <td>{{$item->urdu}}</td>
-                              <td>{{$item->science}}</td>
-                              <td>{{$item->math}}</td>
-                              <td>{{$item->total}}</td>
+                              <td>{{$item->id}}</td>
+                              <td>{{$item->employee->name}}</td>
+                              <td>{{$item->date}}</td>
+                              <td>{{$item->check_in}}</td>
+                              <td>{{$item->check_out}}</td>
                             </tr>
                             @endforeach
-                          </table>  --}}
+                          </table>
 
 
 
-                <table class="table table-hover">
+              {{--  <table class="table table-hover">
                 <tr>
                   <th>Code</th>
                   <th>Name</th>
@@ -85,8 +83,8 @@
 
                   <td>{{$item->code}}</td>
                   <td>{{$item->name}}</td>
-                  <td>{{$item->roles->role_desc}}</td>
-                  <td>{{$item->shifts->shift_desc}}</td>
+                  <td>{{$item->roles->name}}</td>
+                  <td>{{$item->shifts->name}}</td>
                   <td>{{$item->gender}}</td>
                   <td>{{$item->departments->name}}</td>
                   <td>{{$item->designations->name}}</td>
@@ -95,7 +93,7 @@
                   <td><a href="{{route('employee.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a>/<a href="{{route('employee.print',['id'=>$item->id])}}"> <i class="fa fa-print edit"> </i> </a> </td>
                 </tr>
                 @endforeach
-              </table>
+              </table>  --}}
             </div>
             <!-- /.box-body -->
           </div>

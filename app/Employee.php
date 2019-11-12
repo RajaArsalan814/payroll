@@ -11,6 +11,12 @@ class Employee extends Model
 {
     protected $table='employee';
 
+
+    public function attendance()
+    {
+        return $this->hasMany('App\Attendance', 'employee_id', 'id');
+    }
+
     public function roles()
     {
         return $this->hasOne('App\Role', 'id', 'role_id');

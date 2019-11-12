@@ -5,20 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employee;
 use App\Department;
-use App\Designation;
+use App\Amount;
 use App\Role;
-use App\Subject;
 use App\User;
-use App\Shift;
 use Storage;
-use DB;
-class EmployeeController extends Controller
+
+class AmountController extends Controller
 {
     public function create(){
-
-
-
-
         $isEdit=false;
         $employee=Employee::all();
         $department=Department::all();
@@ -31,12 +25,9 @@ class EmployeeController extends Controller
     }
 
     public function index(){
-        // SELECT column_name(s)
-        // FROM table1        INNER JOIN table2        ON table1.column_name = table2.column_name;
-$sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math) AS total FROM `users` INNER JOIN `subjects` ON users.id=subjects.user_id";
-        $sum_result = DB::select($sql);
-        $employee=Employee::with('roles','shifts','designations','departments')->get();
-        return view('employee.employee.employee',compact($employee,'employee',$sum_result,'sum_result'));
+
+        $amount=Amount::with('role','user')->get();
+        return view('employee.employee.amount',compact($amount,'amount'));
     }
 
     public function store(Request $request){

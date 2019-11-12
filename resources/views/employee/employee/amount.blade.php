@@ -42,32 +42,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-
-
-                    {{--  <table class="table table-hover">
-                            <tr>
-                              <th>Name</th>
-                              <th>English</th>
-                              <th>Urdu </th>
-                              <th>Science</th>
-                              <th>Math</th>
-                              <th>Total </th>
-                            </tr>
-                            @foreach ($sum_result as $item)
-                            <tr>
-                              <td>{{$item->name}}</td>
-                              <td>{{$item->english}}</td>
-                              <td>{{$item->urdu}}</td>
-                              <td>{{$item->science}}</td>
-                              <td>{{$item->math}}</td>
-                              <td>{{$item->total}}</td>
-                            </tr>
-                            @endforeach
-                          </table>  --}}
-
-
-
-                <table class="table table-hover">
+              <table class="table table-hover">
                 <tr>
                   <th>Code</th>
                   <th>Name</th>
@@ -80,19 +55,12 @@
                   <th>Employee Type</th>
                   <th>Action</th>
                 </tr>
-                @foreach ($employee as $item)
+                @foreach ($amount as $item)
                 <tr>
 
-                  <td>{{$item->code}}</td>
-                  <td>{{$item->name}}</td>
-                  <td>{{$item->roles->role_desc}}</td>
-                  <td>{{$item->shifts->shift_desc}}</td>
-                  <td>{{$item->gender}}</td>
-                  <td>{{$item->departments->name}}</td>
-                  <td>{{$item->designations->name}}</td>
-                  <td>{{$item->contact_no}}</td>
-                  <td>{{$item->employee_type}}</td>
-                  <td><a href="{{route('employee.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a>/<a href="{{route('employee.print',['id'=>$item->id])}}"> <i class="fa fa-print edit"> </i> </a> </td>
+                  <td>{{$item->role->name}}</td>
+                  <td>{{$item->user->name}}</td>
+                  <td>{{$item->amount}}</td>
                 </tr>
                 @endforeach
               </table>
