@@ -51,6 +51,8 @@
                               <th>Date</th>
                               <th>Check In </th>
                               <th>Check Out</th>
+                              <th>Update In </th>
+                              <th>Update Out</th>
                             </tr>
                             @foreach ($default_attendance as $item)
                             <tr>
@@ -59,6 +61,9 @@
                               <td>{{$item->date}}</td>
                               <td>{{$item->check_in}}</td>
                               <td>{{$item->check_out}}</td>
+                {{--  <td><a href="{{route('default_attendance_check_in.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>  --}}
+                <td><a href="{{route('default_attendance_check_in.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>
+                <td><a href="{{route('default_attendance_check_out.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>
                             </tr>
                             @endforeach
                           </table>

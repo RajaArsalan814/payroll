@@ -29,20 +29,26 @@
             <div class="box-header">
               <h3 class="box-title">Employee</h3>
 
-              <div class="box-tools">
-                <div class="input-group input-group-md hidden-xs col-md-offset-7" style="width: 150px;">
-                  {{--  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">  --}}
+              {{--  <div class="box-tools">
+                <div class="input-group input-group-md hidden-xs " >
+                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
                   <div class="input-group-btn">
-                    <a href="{{route('employee.create')}}" class="btn btn-primary ">Create</a>
-                    {{--  <button type="submit" class="btn btn-primary">Create</button>  --}}
+                      <input type="text" class="form-control" placeholder="search">
+                      <button type="submit" class="btn btn-primary">Search</button>
+                      <a href="{{route('employee.create')}}" class="btn btn-primary ">Create</a>
                   </div>
                 </div>
-              </div>
+              </div>  --}}
             </div>
-            <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-
+                <form action="{{route('attendance_by_date')}}" method="get">
+                    <div class="col-md-3" >
+                        <input type="date" class="form-control" name="date"  placeholder="Search">
+                    </div>
+                    @csrf
+                    <button class="btn btn-primary">Search</button>
+                </form>
 
                     <table class="table table-hover">
                             <tr>

@@ -16,6 +16,7 @@ class Attendance extends Model
         return $this->hasOne('App\Employee', 'id', 'employee_id');
     }
 
+    public $timestamps=false;
 
 
     // public function shifts()

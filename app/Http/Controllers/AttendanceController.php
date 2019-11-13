@@ -32,110 +32,35 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
         $employee=Employee::with('roles','shifts','designations','departments')->get();
         return view('employee.employee.employee',compact($employee,'employee',$sum_result,'sum_result'));
     }
+    public function attendance_by_date(Request $request){
+        // return $request->date;
+        $attendance=Attendance::with('employee')->where('date',$request->date)->get();
+        return view('employee.employee.attendance',compact($attendance,'attendance'));
 
-    public function store(Request $request){
-
-        // return $file;
-
-        // $request->validate([
-        //    'age'                 =>  'required|numeric',
-        //     'hiring_date'        =>  'required',
-        //     'date_of_birth'      =>  'required',
-        //     'name'               =>  'required',
-        //     'father_name'        =>  'required',
-        //     'department_id'      =>  'required',
-        //     'designation_id'     =>  'required',
-        //     'nic'                =>  'required',
-        //     'marital_status'     =>  'required',
-        //     'address'            =>  'required',
-        //     'contact_no'         =>  'required',
-        //     'employee_type'      =>  'required',
-        //     'code'               =>  'required',
-        //     'mobile'             =>  'required',
-        //     'bank_name'          =>  'required',
-        //     'bank_branch'        =>  'required',
-        //     'role_id'            =>  'required',
-        //     'shift_id'           =>  'required',
-        //     'account_no'         =>  'required',
-        //     'confirmation_date'  =>  'required',
-        //     'gender'             =>  'required',
-        // ]);
-
-        $employee=new Employee;
-        $employee->age=$request->age;
-        if($request->file('file')){
-            $image=Storage::disk('public')->put('',$request->file);
-        }
-        $employee->image=$image;
-        $employee->hiring_date=$request->hiring_date;
-        $employee->date_of_birth=$request->date_of_birth;
-        $employee->name=$request->name;
-        $employee->father_name=$request->father_name;
-        $employee->department_id=$request->department_id;
-        $employee->designation_id=$request->designation_id;
-        $employee->nic=$request->nic;
-        $employee->marital_status=$request->marital_status;
-        $employee->address=$request->address;
-        $employee->contact_no=$request->contact_no;
-        $employee->employee_type=$request->employee_type;
-        $employee->code=$request->code;
-        $employee->mobile=$request->mobile;
-        $employee->bank_name=$request->bank_name;
-        $employee->bank_branch=$request->bank_branch;
-        $employee->role_id=$request->role_id;
-        $employee->shift_id=$request->shift_id;
-        $employee->account_no=$request->account_no;
-        $employee->confirmation_date=$request->confirmation_date;
-        $employee->gender=$request->gender;
-        $employee->save();
-        return redirect()->route('employees');
     }
 
-    public function edit($id){
-        $isEdit=true;
-        $department=Department::all();
-        $designation=Designation::all();
-        $role=Role::all();
-        $shift=Shift::all();
-        $employee=Employee::with('roles','shifts','designations','departments')->where('id',$id)->first();
-        return view('employee.employee.create',compact($employee,'employee',$isEdit,'isEdit',$department,'department',
-        $designation,'designation',$role,'role',$shift,'shift'));
+    public function default_attendanceCheckInEdit($id){
+        $attendance=Attendance::with('employee')->where('id',$id)->first();
+        return view('employee.employee.default_attendance_checkIn_edit',compact($attendance,'attendance'));
     }
 
-    public function update(Request $request,$id){
-
-        $employee=Employee::find($id);
-        // if($request->file('file')){
-        //     $image=Storage::disk('public')->put('',$request->file);
-        // }
-        // $employee->image=$image;
-        $employee->age=$request->age;
-        $employee->hiring_date=$request->hiring_date;
-        $employee->date_of_birth=$request->date_of_birth;
-        $employee->name=$request->name;
-        $employee->father_name=$request->father_name;
-        $employee->department_id=$request->department_id;
-        $employee->designation_id=$request->designation_id;
-        $employee->nic=$request->nic;
-        $employee->marital_status=$request->marital_status;
-        $employee->address=$request->address;
-        $employee->contact_no=$request->contact_no;
-        $employee->employee_type=$request->employee_type;
-        $employee->code=$request->code;
-        $employee->mobile=$request->mobile;
-        $employee->bank_name=$request->bank_name;
-        $employee->bank_branch=$request->bank_branch;
-        $employee->role_id=$request->role_id;
-        $employee->shift_id=$request->shift_id;
-        $employee->account_no=$request->account_no;
-        $employee->confirmation_date=$request->confirmation_date;
-        $employee->gender=$request->gender;
-        $employee->save();
-        return redirect()->route('employees');
+    public function default_attendanceCheckOutEdit($id){
+        $attendance=Attendance::with('employee')->where('id',$id)->first();
+        return view('employee.employee.default_attendance_checkOut_edit',compact($attendance,'attendance'));
     }
 
-    public function print($id){
-        $employee=Employee::with('roles','shifts','designations','departments')->where('id',$id)->first();
-        return view('employee.employee.print',compact($employee,'employee'));
+    public function default_attendance_checkIn_Update(Request $request,$id){
+        $attendance=Attendance::where('id',$id)->first();
+        $attendance->check_in=$request->check_in;
+        $attendance->save();
+        return redirect()->route('attendance.create');
     }
+
+    public function default_attendance_checkOut_Update(Request $request,$id){
+        $attendance=Attendance::where('id',$id)->first();
+        $attendance->check_out=$request->check_out;
+        $attendance->save();
+        return redirect()->route('attendance.create');
+    }
+
 }

@@ -426,7 +426,7 @@
           <ul class="treeview-menu">
             <li><a href="{{route('employees')}}">Employee</a></li>
             <li><a href="{{route('attendance.create')}}">Attendance</a></li>
-            <li><a href="{{route('attendance_default')}}">Default Attendance</a></li>
+            <li><a href="{{route('default_attendance')}}">Default Attendance</a></li>
             <li><a href="{{route('shifts')}}">Shift</a></li>
             <li><a href="{{route('roles')}}">Roles</a></li>
             {{-- <li ><a href="{{route('charges')}}"> Charges</a></li>
