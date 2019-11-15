@@ -428,7 +428,7 @@
             <li><a href="{{route('attendance.create')}}">Attendance</a></li>
             <li><a href="{{route('default_attendance')}}">Default Attendance</a></li>
             <li><a href="{{route('shifts')}}">Shift</a></li>
-            <li><a href="{{route('roles')}}">Roles</a></li>
+            <li><a href="{{route('roles')}}">Rules</a></li>
             {{-- <li ><a href="{{route('charges')}}"> Charges</a></li>
             <li><a href="{{route('port')}}"> Port</a></li>
             <li><a href="{{route('agent')}}"> Agent</a></li>

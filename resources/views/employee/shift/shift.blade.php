@@ -56,8 +56,8 @@
                             <tr>
                             <td>{{$item->id}}</td>
                               <td>{{$item->shift_desc}}</td>
-                              <td>{{$item->start_time}}</td>
-                              <td>{{$item->end_time}}</td>
+                              <td>{{ Carbon\Carbon::parse($item['start_time'])->format('H:i') }}</td>
+                              <td>{{ Carbon\Carbon::parse($item['end_time'])->format('H:i') }}</td>
                               <td><a href="{{route('shift.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a> </td>
                             </tr>
                             @endforeach

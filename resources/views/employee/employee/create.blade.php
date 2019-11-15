@@ -38,8 +38,8 @@
         <div class="col-md-6">
             <div class="form-group">
               @if($isEdit==true)
-              {{-- <input type="file"   name="file"  class="form-control" value="{{$employee->image}}">
-              <img src="{{asset('/storage').'/'.$employee->image}}" style="height:50px;" alt="Image Error occur"> --}}
+              {{-- <input type="file"   name="file"  class="form-control" value="{{$employee->image}}"> --}}
+              <img src="{{asset('/storage').'/'.$employee->image}}" style="height:100px;width:150px;" alt="Image Error occur">
               {{-- <input type="text" name="age" class="form-control" value="{{$employee->age}}" > --}}
               @else
               {{-- <img src="{{asset(url(''))}}/uploads/profile.jpg" style="height:150px;width:150px;"  alt="..." class="img-thumbnail form-control"> --}}
@@ -52,7 +52,7 @@
         </div>
 
 
-        
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="age">Age:</label>
@@ -145,10 +145,10 @@
                         @if($isEdit==true)
                         <select name="designation_id" id="" required class="form-control">
                             @foreach ($designation as $item)
-                            <option   
+                            <option
                              @if($item->id==$employee->designations->id)
                                 selected
-                              @endif 
+                              @endif
                                 value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         </select>
@@ -178,21 +178,21 @@
                             @if($item->id==$employee->roles->id)
                             selected
                             @endif
-                            value="{{$item->id}}">{{$item->name}}</option>
+                            value="{{$item->id}}">{{$item->role_desc}}</option>
                             @endforeach
                         </select>
                         @else
                         <select name="role_id" id="" required class="form-control">
-                          <option value="">Select Role</option>  
+                          <option value="">Select Role</option>
                           @foreach ($role as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option value="{{$item->id}}">{{$item->role_desc}}</option>
                             @endforeach
                         </select>
                         @endif
-    
+
                     </div>
                 </div>
-    
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="code">Select Shift:</label>
@@ -203,18 +203,18 @@
                                 @if($item->id==$employee->shifts->id)
                                 selected
                                 @endif
-                                value="{{$item->id}}">{{$item->name}}</option>
+                                value="{{$item->id}}">{{$item->shift_desc}}</option>
                                 @endforeach
                             </select>
                             @else
                             <select name="shift_id" id="" required class="form-control">
                                 <option disabled="true" selected>Select Shift</option>
                                 @foreach ($shift as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                <option value="{{$item->id}}">{{$item->shift_desc}}</option>
                                 @endforeach
                             </select>
                             @endif
-    
+
                         </div>
                     </div>
 
@@ -223,7 +223,7 @@
                         <div class="form-group">
                             <label for="code">Select Employee Type:</label>
                             @if($isEdit==true)
-                            <select name="employee_type" required id="" class="form-control">                          
+                            <select name="employee_type" required id="" class="form-control">
                                 <option
                                 @if($employee->employee_type=='Permanent')
                                 selected
@@ -242,7 +242,7 @@
                                 <option value="Temporary">Temporary</option>
                             </select>
                             @endif
-    
+
                         </div>
                     </div>
 
@@ -257,7 +257,7 @@
                                 <span class="text-danger">{{$errors->first('confirmation_date') ?? null}}</span>
                         </div>
                     </div>
- 
+
                 <div class="col-md-6">
                     <div class="form-group">
                             <label for="father">NIC:</label>
@@ -270,8 +270,8 @@
                     </div>
                 </div>
 
-                
- 
+
+
                 <div class="col-md-6">
                     <div class="form-group">
                             <label for="father">Account Number:</label>
@@ -299,16 +299,16 @@
                 </div>
 
 
-           
 
 
-                
- 
+
+
+
                 <div class="col-md-6">
                     <div class="form-group">
                             <label for="father">Gender:</label>
                             @if($isEdit==true)
-                            <input type="radio" required name="gender"  
+                            <input type="radio" required name="gender"
                             @if($employee->gender=='male')
                             checked="true"
                             @endif
@@ -336,7 +336,7 @@
                     <div class="form-group">
                             <label for="marital_status">Marital Status</label>
                             @if($isEdit==true)
-                            <input type="radio" required name="marital_status" 
+                            <input type="radio" required name="marital_status"
                             @if($employee->marital_status=='single')
                             checked="true"
                             @endif
@@ -353,7 +353,7 @@
                             <span class="text-danger">{{$errors->first('marital_status') ?? null}}</span>
                     </div>
                 </div>
-    
+
 
 
             <div class="col-md-6">
@@ -383,7 +383,7 @@
             </div>
 
 
-            
+
             <div class="col-md-6">
                 <div class="form-group">
                         <label for="url">mobile:</label>

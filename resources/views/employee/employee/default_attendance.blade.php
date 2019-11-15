@@ -43,6 +43,13 @@
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
 
+                    <form action="{{route('default_attendance_by_date')}}" method="get">
+                            <div class="col-md-3" >
+                                <input type="date" class="form-control" name="date"  placeholder="Search">
+                            </div>
+                            @csrf
+                            <button class="btn btn-primary">Search</button>
+                        </form>
 
                     <table class="table table-hover">
                             <tr>
@@ -59,8 +66,8 @@
                               <td>{{$item->id}}</td>
                               <td>{{$item->employee->name}}</td>
                               <td>{{$item->date}}</td>
-                              <td>{{$item->check_in}}</td>
-                              <td>{{$item->check_out}}</td>
+                              <td>{{ Carbon\Carbon::parse($item['check_in'])->format('H:i') }}</td>
+                              <td>{{ Carbon\Carbon::parse($item['check_out'])->format('H:i') }}</td>
                 {{--  <td><a href="{{route('default_attendance_check_in.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>  --}}
                 <td><a href="{{route('default_attendance_check_in.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>
                 <td><a href="{{route('default_attendance_check_out.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>

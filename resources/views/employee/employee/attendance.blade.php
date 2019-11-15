@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-            Employee Attendance Record
-        <small>preview of Employee Attendance Record</small>
+            Daily O.T Report
+        <small>Preview of Daily O.T Report</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Setup</a></li>
-        <li class="active">Employee Attendance Record</li>
+        <li class="active">Daily O.T Report</li>
       </ol>
     </section>
 
@@ -52,19 +52,26 @@
 
                     <table class="table table-hover">
                             <tr>
-                              <th>Employee Id</th>
+                              <th>S:No</th>
                               <th>Employee Name</th>
                               <th>Date</th>
                               <th>Check In </th>
                               <th>Check Out</th>
+                              <th>Our Time</th>
                             </tr>
                             @foreach ($attendance as $item)
                             <tr>
-                              <td>{{$item->id}}</td>
-                              <td>{{$item->employee->name}}</td>
-                              <td>{{$item->date}}</td>
-                              <td>{{$item->check_in}}</td>
-                              <td>{{$item->check_out}}</td>
+                                <td  style="display:none">
+                                {{$check_out=Carbon\Carbon::parse($item->check_out)}}
+                                {{$shift_end_time=Carbon\Carbon::parse($item->shift->end_time)}}
+                                {{$over_time=$shift_end_time->diffInHours($check_out)}}
+                                </td>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->employee->name}}</td>
+                            <td>{{$item->date}}</td>
+                            <td>{{$check_in = Carbon\Carbon::parse($item->check_in)->format('H:s')}}</td>
+                            <td>{{$check_out = Carbon\Carbon::parse($item->check_out)->format('H:s')}}</td>
+                            <td>{{ $over_time }}</td>
                             </tr>
                             @endforeach
                           </table>

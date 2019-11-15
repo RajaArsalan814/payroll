@@ -9,10 +9,19 @@ use App\Role;
 use Storage;
 use Illuminate\Http\Request;
 use DB;
+use App\Shift;
+use Carbon\Carbon;
 class AttendanceController extends Controller
 {
     public function create(){
-        $attendance=Attendance::with('employee')->get();
+
+        $to = \Carbon\Carbon::createFromFormat(' H:s', '02:00');
+        $from = \Carbon\Carbon::createFromFormat(' H:s', '03:00');
+
+
+        $diff_in_minutes = $to->diffInMinutes($from);
+        $attendance=Attendance::with('shift','employee')->get();
+
         $isEdit=false;
 
         return view('employee.employee.attendance',compact($isEdit,'isEdit',$attendance,'attendance'));
@@ -33,10 +42,9 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
         return view('employee.employee.employee',compact($employee,'employee',$sum_result,'sum_result'));
     }
     public function attendance_by_date(Request $request){
-        // return $request->date;
+
         $attendance=Attendance::with('employee')->where('date',$request->date)->get();
         return view('employee.employee.attendance',compact($attendance,'attendance'));
-
     }
 
     public function default_attendanceCheckInEdit($id){
@@ -61,6 +69,16 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
         $attendance->check_out=$request->check_out;
         $attendance->save();
         return redirect()->route('attendance.create');
+    }
+
+    public function default_attendance_by_date(Request $request){
+
+            $default_attendance=Attendance::where('date', $request->date)->Where(function ($query) {
+            $query->orWhere('check_in', '')
+                ->orWhere('check_out', '');
+    })->get();
+// return        $default_attendance=Attendance::with('employee')->where('date',$request->date)->orwhere('check_in','')->orwhere('check_out','')->get();
+        return view('employee.employee.default_attendance',compact($default_attendance,'default_attendance'));
     }
 
 }

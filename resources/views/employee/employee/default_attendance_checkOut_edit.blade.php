@@ -44,7 +44,7 @@
             <div class="col-md-6">
                     <div class="form-group">
                         <label for="code">Check In:</label>
-                        <input type="time" required name="check_in" disabled="true" class="form-control" value="{{$attendance->check_in}}" >
+                        <input type="time" required name="check_in" disabled="true" class="form-control" value="{{ Carbon\Carbon::parse($attendance['check_in'])->format('H:i') }}" >
                         <span class="text-danger">{{$errors->first('check_in') ?? null}}</span>
                     </div>
             </div>
@@ -52,12 +52,12 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="code">Check Out:</label>
-                    <input type="time" required name="check_out"  class="form-control" value="{{$attendance->check_out}}" >
+                    <input type="time" required name="check_out"  class="form-control" value="{{ Carbon\Carbon::parse($attendance['check_out'])->format('H:i') }}" >
                     <span class="text-danger">{{$errors->first('check_out') ?? null}}</span>
                 </div>
         </div>
         <div class="col-md-3 col-md-offset-5">
-            <a href="{{route('attendance_by_date')}}" class="btn btn-primary">Back</a>
+            <a href="{{route('default_attendance_by_date')}}" class="btn btn-primary">Back</a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button type="submit" class="btn btn-primary ">
                     Update

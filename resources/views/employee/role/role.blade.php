@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-            Role
-        <small>preview of Role </small>
+            Rule
+        <small>preview of Rule </small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Setup</a></li>
-        <li class="active">Role</li>
+        <li class="active">Rule</li>
       </ol>
     </section>
 
@@ -27,7 +27,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Role</h3>
+              <h3 class="box-title">Rule</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-md hidden-xs col-md-offset-7" style="width: 150px;">

@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <label for="code">Start Time:</label>
                         @if($isEdit==true)
-                        <input type="time" required name="start_time" class="form-control" value="{{$shift->start_time}}" >
+                        <input type="time" required name="start_time" class="form-control" value="{{ Carbon\Carbon::parse($shift['start_time'])->format('H:i') }}" >
                         @else
                         <input type="time" required name="start_time" class="form-control" >
                         @endif
@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label for="code">End Time:</label>
                     @if($isEdit==true)
-                    <input type="time" required name="end_time" class="form-control" value="{{$shift->end_time}}" >
+                    <input type="time" required name="end_time" class="form-control" value="{{ Carbon\Carbon::parse($shift['end_time'])->format('H:i') }}" >
                     @else
                     <input type="time" required name="end_time" class="form-control" >
                     @endif
