@@ -7,13 +7,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-            Employee Attendance Record
-        <small>preview of Employee Default Attendance </small>
+            Attendance Correction Report
+        <small>preview of Attendance Correction Report </small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Setup</a></li>
-        <li class="active">Employee Default Attendance </li>
+        <li class="active"> Attendance Correction Report</li>
       </ol>
     </section>
 
@@ -27,7 +27,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Employee Default Attendance </h3>
+              <h3 class="box-title">Date </h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-md hidden-xs col-md-offset-7" style="width: 150px;">
@@ -56,6 +56,7 @@
                               <th>Employee Id</th>
                               <th>Employee Name</th>
                               <th>Date</th>
+                              <th>Shift</th>
                               <th>Check In </th>
                               <th>Check Out</th>
                               <th>Update In </th>
@@ -65,7 +66,8 @@
                             <tr>
                               <td>{{$item->id}}</td>
                               <td>{{$item->employee->name}}</td>
-                              <td>{{$item->date}}</td>
+                              <td>{{ Carbon\Carbon::parse($item['date'])->format('d-m-Y') }}</td>
+                              <td>{{$item->shift->shift_desc}}</td>
                               <td>{{ Carbon\Carbon::parse($item['check_in'])->format('H:i') }}</td>
                               <td>{{ Carbon\Carbon::parse($item['check_out'])->format('H:i') }}</td>
                 {{--  <td><a href="{{route('default_attendance_check_in.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>  --}}

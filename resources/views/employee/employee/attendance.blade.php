@@ -27,7 +27,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Employee</h3>
+              <h3 class="box-title">Date</h3>
 
               {{--  <div class="box-tools">
                 <div class="input-group input-group-md hidden-xs " >
@@ -68,7 +68,7 @@
                                 </td>
                             <td>{{$item->id}}</td>
                             <td>{{$item->employee->name}}</td>
-                            <td>{{$item->date}}</td>
+                            <td>{{ Carbon\Carbon::parse($item['date'])->format('d-m-Y') }}</td>
                             <td>{{$check_in = Carbon\Carbon::parse($item->check_in)->format('H:s')}}</td>
                             <td>{{$check_out = Carbon\Carbon::parse($item->check_out)->format('H:s')}}</td>
                             <td>{{ $over_time }}</td>

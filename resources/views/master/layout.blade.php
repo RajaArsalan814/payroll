@@ -425,11 +425,11 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('employees')}}">Employee</a></li>
-            <li><a href="{{route('attendance.create')}}">Attendance</a></li>
-            <li><a href="{{route('default_attendance')}}">Default Attendance</a></li>
             <li><a href="{{route('shifts')}}">Shift</a></li>
-            <li><a href="{{route('roles')}}">Rules</a></li>
-            {{-- <li ><a href="{{route('charges')}}"> Charges</a></li>
+            <li><a href="{{route('roles')}}">Rule</a></li>
+          {{--  <li><a href="{{route('attendance.create')}}">Attendance</a></li>
+            <li><a href="{{route('default_attendance')}}">Default Attendance</a></li>
+             <li ><a href="{{route('charges')}}"> Charges</a></li>
             <li><a href="{{route('port')}}"> Port</a></li>
             <li><a href="{{route('agent')}}"> Agent</a></li>
             <li class=""><a href="{{route('shipper')}}"> Shipper</a></li>
@@ -440,6 +440,31 @@
             <li><a href="{{route('container')}}"> Container</a></li> --}}
           </ul>
         </li>
+        <li class="treeview active">
+            <a href="#">
+              <i class="fa fa-edit"></i> <span>Reports</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{route('attendance.create')}}">Daily O.T Report</a></li>
+                <li><a href="{{route('default_attendance')}}">Attendance Correction</a></li>
+                <li><a href="{{route('default_attendance')}}">Monthly Attendance</a></li>
+              {{--  <li><a href="{{route('employees')}}">Employee</a></li>
+              <li><a href="{{route('shifts')}}">Shift</a></li>
+              <li><a href="{{route('roles')}}">Rules</a></li>
+               <li ><a href="{{route('charges')}}"> Charges</a></li>
+              <li><a href="{{route('port')}}"> Port</a></li>
+              <li><a href="{{route('agent')}}"> Agent</a></li>
+              <li class=""><a href="{{route('shipper')}}"> Shipper</a></li>
+              <li><a href="{{route('consignee')}}"> Consignee</a></li>
+              <li><a href="{{route('forwarder')}}"> Forwarder</a></li>
+              <li class=""><a href="{{route('vessel')}}">Vessel</a></li>
+              <li><a href="{{route('depot')}}"> Depot</a></li>
+              <li><a href="{{route('container')}}"> Container</a></li> --}}
+            </ul>
+          </li>
         {{-- <li class="treeview active">
             <a href="#">
               <i class="fa fa-edit"></i> <span>Transaction</span>

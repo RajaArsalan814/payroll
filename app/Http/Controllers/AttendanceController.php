@@ -11,10 +11,35 @@ use Illuminate\Http\Request;
 use DB;
 use App\Shift;
 use Carbon\Carbon;
+use App\MachineAttendance;
 class AttendanceController extends Controller
 {
     public function create(){
 
+        // $input  = '11-08-1990 23:23:00';
+           $checktime=MachineAttendance::pluck('CHECKTIME')->first();
+                    $new_date = date("Y-m-d ",strtotime($checktime));
+            $time = date("H:i:s",strtotime($checktime));
+return      $checktime=MachineAttendance::whereDate('CHECKTIME',$new_date)->where('USERID','36')->get();
+      $new_date = date("Y-m-d ",strtotime($checktime));
+      return  $checktime=MachineAttendance::whereTime('CHECKTIME',$checktime->CHECKTIME)->get();
+return  $checktime=MachineAttendance::whereTime('CHECKTIME',$new_date)->get();
+
+
+//  $date = Carbon::createFromFormat($format, $input);
+        // return $get_time->CHECKTIME;
+        // $day = Carbon::createFromFormat('Y-m-d', $get_time->CHECKTIME)->day();
+        // dd($day);
+    // $start = Carbon::parse($get_time)->format('Y-m-d');
+
+// $report = Reports::with('booking')->whereDate('created_at','>=',$start)->WhereDate('created_at','<=',$end)->get();
+
+
+
+            // return $to = \Carbon\Carbon::createFromFormat('Y-m-d', $get_time);
+// return            $to = \Carbon\Carbonformat('M d Y',$get_time);
+        // return MachineAttendance::all();
+// return        MachineAttendance::where('CHECKTIME',$get_time)->get();
         $to = \Carbon\Carbon::createFromFormat(' H:s', '02:00');
         $from = \Carbon\Carbon::createFromFormat(' H:s', '03:00');
 
@@ -29,7 +54,7 @@ class AttendanceController extends Controller
 
     public function default_attendance(){
 
-        $default_attendance=Attendance::with('employee')->where('check_in','')->orwhere('check_out','')->get();
+        $default_attendance=Attendance::with('employee','shift')->where('check_in','')->orwhere('check_out','')->get();
         return view('employee.employee.default_attendance',compact($default_attendance,'default_attendance'));
     }
 

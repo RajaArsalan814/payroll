@@ -41,7 +41,7 @@
 
             @csrf
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                     <div class="form-group">
                         <label for="code">Check In:</label>
     <input type="time" required name="check_in" class="form-control" value="{{ Carbon\Carbon::parse($attendance['check_in'])->format('H:i') }}" >

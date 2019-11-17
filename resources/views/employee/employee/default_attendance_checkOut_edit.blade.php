@@ -31,7 +31,7 @@
 
 
 
-        <div class="col-md-6">
+        <div class="col-md-12">
                 <div class="form-group">
                     <label for="contact">Employee Name:</label>
                     <input type="text" required name="employee_id" class="form-control"  disabled="true" value="{{$attendance->employee->name}}" >
