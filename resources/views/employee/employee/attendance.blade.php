@@ -55,6 +55,7 @@
                               <th>S:No</th>
                               <th>Employee Name</th>
                               <th>Date</th>
+                              <th>Shift</th>
                               <th>Check In </th>
                               <th>Check Out</th>
                               <th>Our Time</th>
@@ -62,15 +63,20 @@
                             @foreach ($attendance as $item)
                             <tr>
                                 <td  style="display:none">
+                                {{$check_in=Carbon\Carbon::parse($item->check_in)}}
+
+                                {{--  {{$check_in_time = date("h:i:s ",strtotime($check_in))}}  --}}
+                                {{--  {{$check_out_time = date("h:i:s ",strtotime($check_out))}}  --}}
                                 {{$check_out=Carbon\Carbon::parse($item->check_out)}}
                                 {{$shift_end_time=Carbon\Carbon::parse($item->shift->end_time)}}
-                                {{$over_time=$shift_end_time->diffInHours($check_out)}}
+                                {{$over_time=$shift_end_time->diffInHours($item->check_out)}}
                                 </td>
                             <td>{{$item->id}}</td>
                             <td>{{$item->employee->name}}</td>
-                            <td>{{ Carbon\Carbon::parse($item['date'])->format('d-m-Y') }}</td>
-                            <td>{{$check_in = Carbon\Carbon::parse($item->check_in)->format('H:s')}}</td>
-                            <td>{{$check_out = Carbon\Carbon::parse($item->check_out)->format('H:s')}}</td>
+                            <td>{{$item->date}}</td>
+                            <td>{{$item->shift->shift_desc}}</td>
+                            <td>{{$check_in->toTimeString()}}</td>
+                            <td>{{$check_out->toTimeString()}}</td>
                             <td>{{ $over_time }}</td>
                             </tr>
                             @endforeach

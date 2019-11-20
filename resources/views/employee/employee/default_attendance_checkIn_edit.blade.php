@@ -31,7 +31,7 @@
 
 
 
-        <div class="col-md-6">
+        <div class="col-md-12">
                 <div class="form-group">
                     <label for="contact">Employee Name:</label>
                     <input type="text" required name="employee_id" class="form-control"  disabled="true" value="{{$attendance->employee->name}}" >
@@ -41,7 +41,7 @@
 
             @csrf
 
-            <div class="col-md-12">
+            <div class="col-md-6">
                     <div class="form-group">
                         <label for="code">Check In:</label>
     <input type="time" required name="check_in" class="form-control" value="{{ Carbon\Carbon::parse($attendance['check_in'])->format('H:i') }}" >

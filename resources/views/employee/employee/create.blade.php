@@ -35,14 +35,125 @@
         @endif
         " method="POST" enctype="multipart/form-data">
 
+
+        @if($isEdit==true)
         <div class="col-md-6">
             <div class="form-group">
-              @if($isEdit==true)
               {{-- <input type="file"   name="file"  class="form-control" value="{{$employee->image}}"> --}}
               <img src="{{asset('/storage').'/'.$employee->image}}" style="height:100px;width:150px;" alt="Image Error occur">
               {{-- <input type="text" name="age" class="form-control" value="{{$employee->age}}" > --}}
-              @else
-              {{-- <img src="{{asset(url(''))}}/uploads/profile.jpg" style="height:150px;width:150px;"  alt="..." class="img-thumbnail form-control"> --}}
+              <span class="text-danger">{{$errors->first('file') ?? null}}</span>
+            </div>
+        </div>
+        @endif
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="contact">Name:</label>
+                @if($isEdit==true)
+                <input type="text" required name="name" class="form-control" value="{{$employee->name}}" >
+                @else
+                <input type="text" required name="name" class="form-control"  >
+                @endif
+                <span class="text-danger">{{$errors->first('name') ?? null}}</span>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="code">Hiring Date:</label>
+                @if($isEdit==true)
+                <input type="date" required name="hiring_date" class="form-control" value="{{$employee->hiring_date}}" >
+                @else
+                <input type="date" required name="hiring_date" class="form-control" >
+                @endif
+                <span class="text-danger">{{$errors->first('hiring_date') ?? null}}</span>
+            </div>
+    </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="code">Date Of Birth:</label>
+                @if($isEdit==true)
+                <input type="date" required name="date_of_birth" class="form-control" value="{{$employee->date_of_birth}}" >
+                @else
+                <input type="date" required name="date_of_birth" class="form-control" >
+                @endif
+                <span class="text-danger">{{$errors->first('date_of_birth') ?? null}}</span>
+            </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="age">Age:</label>
+            @if($isEdit==true)
+            <input type="text" name="age" required class="form-control" value="{{$employee->age}}" >
+            @else
+            <input type="text" name="age" required class="form-control">
+            @endif
+            <span class="text-danger">{{$errors->first('age') ?? null}}</span>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="form-group">
+                <label for="father">Gender:</label>
+                @if($isEdit==true)
+                <input type="radio" required name="gender"
+                @if($employee->gender=='male')
+                checked="true"
+                @endif
+                value="male"
+                  >Male
+                <input type="radio" required name="gender"
+                @if($employee->gender=='female')
+                checked="true"
+                @endif
+                value="female"  >Female
+                @else
+
+                <input type="radio" name="gender" required  value="male"  >Male
+                <input type="radio" name="gender" required  value="female"  >Female
+                @endif
+                <span class="text-danger">{{$errors->first('gender') ?? null}}</span>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="col-md-6">
+        <div class="form-group">
+                <label for="marital_status">Marital Status</label>
+                @if($isEdit==true)
+                <input type="radio" required name="marital_status"
+                @if($employee->marital_status=='single')
+                checked="true"
+                @endif
+                value="single"  >Single
+                <input type="radio" required name="marital_status"
+                @if($employee->marital_status=='married')
+                checked="true"
+                @endif
+                value="married"  >Married
+                @else
+                <input type="radio" required name="marital_status"  value="single"  >Single
+                <input type="radio" required name="marital_status"  value="married"  >Married
+                @endif
+                <span class="text-danger">{{$errors->first('marital_status') ?? null}}</span>
+        </div>
+    </div>
+
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+              @if($isEdit==false)
               <label for="image">Image</label>
               <input type="file"   name="file"  required class="form-control">
                 {{-- <input type="text" name="age" class="form-control"> --}}
@@ -53,66 +164,13 @@
 
 
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="age">Age:</label>
-                    @if($isEdit==true)
-                    <input type="text" name="age" required class="form-control" value="{{$employee->age}}" >
-                    @else
-                    <input type="text" name="age" required class="form-control">
-                    @endif
-                    <span class="text-danger">{{$errors->first('age') ?? null}}</span>
-                </div>
-            </div>
 
-            <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="code">Hiring Date:</label>
-                        @if($isEdit==true)
-                        <input type="date" required name="hiring_date" class="form-control" value="{{$employee->hiring_date}}" >
-                        @else
-                        <input type="date" required name="hiring_date" class="form-control" >
-                        @endif
-                        <span class="text-danger">{{$errors->first('hiring_date') ?? null}}</span>
-                    </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="code">Date Of Birth:</label>
-                    @if($isEdit==true)
-                    <input type="date" required name="date_of_birth" class="form-control" value="{{$employee->date_of_birth}}" >
-                    @else
-                    <input type="date" required name="date_of_birth" class="form-control" >
-                    @endif
-                    <span class="text-danger">{{$errors->first('date_of_birth') ?? null}}</span>
-                </div>
-        </div>
+
 
 
             @csrf
-            <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="contact">Name:</label>
-                        @if($isEdit==true)
-                        <input type="text" required name="name" class="form-control" value="{{$employee->name}}" >
-                        @else
-                        <input type="text" required name="name" class="form-control"  >
-                        @endif
-                        <span class="text-danger">{{$errors->first('name') ?? null}}</span>
-                    </div>
-                </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                        <label for="father">Father Name:</label>
-                        @if($isEdit==true)
-                        <input type="text" required name="father_name" class="form-control" value="{{$employee->father_name}}" >
-                        @else
-                        <input type="text" required name="father_name" class="form-control" >
-                        @endif
-                        <span class="text-danger">{{$errors->first('father_name') ?? null}}</span>
-                </div>
-            </div>
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="code">Select Department:</label>
@@ -164,7 +222,58 @@
                     </div>
                 </div>
 
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="code">Select Shift:</label>
+                        @if($isEdit==true)
+                        <select name="shift_id" required id="" class="form-control">
+                            @foreach ($shift as $item)
+                            <option
+                            @if($item->id==$employee->shifts->id)
+                            selected
+                            @endif
+                            value="{{$item->id}}">{{$item->shift_desc}}</option>
+                            @endforeach
+                        </select>
+                        @else
+                        <select name="shift_id" id="" required class="form-control">
+                            <option disabled="true" selected>Select Shift</option>
+                            @foreach ($shift as $item)
+                            <option value="{{$item->id}}">{{$item->shift_desc}}</option>
+                            @endforeach
+                        </select>
+                        @endif
 
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="code">Select Employee Type:</label>
+                        @if($isEdit==true)
+                        <select name="employee_type" required id="" class="form-control">
+                            <option
+                            @if($employee->employee_type=='Permanent')
+                            selected
+                            @endif
+                            value="Permanent">Permanent</option>
+                            <option
+                            @if($employee->employee_type=='Temporary')
+                            selected
+                            @endif
+                            value="Temporary">Temporary</option>
+                        </select>
+                        @else
+                        <select name="employee_type" id="" required class="form-control">
+                            <option selected disabled="true">Select Employee Type</option>
+                            <option value="Permanent">Permanent</option>
+                            <option value="Temporary">Temporary</option>
+                        </select>
+                        @endif
+
+                    </div>
+                </div>
 
 
                 <div class="col-md-6">
@@ -193,70 +302,9 @@
                     </div>
                 </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="code">Select Shift:</label>
-                            @if($isEdit==true)
-                            <select name="shift_id" required id="" class="form-control">
-                                @foreach ($shift as $item)
-                                <option
-                                @if($item->id==$employee->shifts->id)
-                                selected
-                                @endif
-                                value="{{$item->id}}">{{$item->shift_desc}}</option>
-                                @endforeach
-                            </select>
-                            @else
-                            <select name="shift_id" id="" required class="form-control">
-                                <option disabled="true" selected>Select Shift</option>
-                                @foreach ($shift as $item)
-                                <option value="{{$item->id}}">{{$item->shift_desc}}</option>
-                                @endforeach
-                            </select>
-                            @endif
-
-                        </div>
-                    </div>
 
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="code">Select Employee Type:</label>
-                            @if($isEdit==true)
-                            <select name="employee_type" required id="" class="form-control">
-                                <option
-                                @if($employee->employee_type=='Permanent')
-                                selected
-                                @endif
-                                value="Permanent">Permanent</option>
-                                <option
-                                @if($employee->employee_type=='Temporary')
-                                selected
-                                @endif
-                                value="Temporary">Temporary</option>
-                            </select>
-                            @else
-                            <select name="employee_type" id="" required class="form-control">
-                                <option selected disabled="true">Select Employee Type</option>
-                                <option value="Permanent">Permanent</option>
-                                <option value="Temporary">Temporary</option>
-                            </select>
-                            @endif
 
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="father">Confirmation_date:</label>
-                                @if($isEdit==true)
-                                <input type="date" name="confirmation_date" required class="form-control" value="{{$employee->confirmation_date}}" >
-                                @else
-                                <input type="date" name="confirmation_date" required class="form-control" >
-                                @endif
-                                <span class="text-danger">{{$errors->first('confirmation_date') ?? null}}</span>
-                        </div>
-                    </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
@@ -271,6 +319,17 @@
                 </div>
 
 
+                <div class="col-md-6">
+                    <div class="form-group">
+                            <label for="father">Father Name:</label>
+                            @if($isEdit==true)
+                            <input type="text" required name="father_name" class="form-control" value="{{$employee->father_name}}" >
+                            @else
+                            <input type="text" required name="father_name" class="form-control" >
+                            @endif
+                            <span class="text-danger">{{$errors->first('father_name') ?? null}}</span>
+                    </div>
+                </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
@@ -284,75 +343,18 @@
                     </div>
                 </div>
 
-
                 <div class="col-md-6">
                     <div class="form-group">
-                            <label for="father">Address:</label>
+                            <label for="father">Confirmation_date:</label>
                             @if($isEdit==true)
-                      <textarea name="address" id="" cols="30" rows="5" class="form-control">{{$employee->address}}</textarea>
-                            {{-- <input type="text" name="address" required class="form-control" value="{{$employee->address}}" > --}}
+                            <input type="date" name="confirmation_date" required class="form-control" value="{{$employee->confirmation_date}}" >
                             @else
-                            <textarea name="address" id="" class="form-control" cols="30" rows="5"></textarea>
+                            <input type="date" name="confirmation_date" required class="form-control" >
                             @endif
-                            <span class="text-danger">{{$errors->first('address') ?? null}}</span>
+                            <span class="text-danger">{{$errors->first('confirmation_date') ?? null}}</span>
                     </div>
                 </div>
 
-
-
-
-
-
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                            <label for="father">Gender:</label>
-                            @if($isEdit==true)
-                            <input type="radio" required name="gender"
-                            @if($employee->gender=='male')
-                            checked="true"
-                            @endif
-                            value="male"
-                              >Male
-                            <input type="radio" required name="gender"
-                            @if($employee->gender=='female')
-                            checked="true"
-                            @endif
-                            value="female"  >Female
-                            @else
-
-                            <input type="radio" name="gender" required  value="male"  >Male
-                            <input type="radio" name="gender" required  value="female"  >Female
-                            @endif
-                            <span class="text-danger">{{$errors->first('gender') ?? null}}</span>
-                    </div>
-                </div>
-
-
-
-
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                            <label for="marital_status">Marital Status</label>
-                            @if($isEdit==true)
-                            <input type="radio" required name="marital_status"
-                            @if($employee->marital_status=='single')
-                            checked="true"
-                            @endif
-                            value="single"  >Single
-                            <input type="radio" required name="marital_status"
-                            @if($employee->marital_status=='married')
-                            checked="true"
-                            @endif
-                            value="married"  >Married
-                            @else
-                            <input type="radio" required name="marital_status"  value="single"  >Single
-                            <input type="radio" required name="marital_status"  value="married"  >Married
-                            @endif
-                            <span class="text-danger">{{$errors->first('marital_status') ?? null}}</span>
-                    </div>
-                </div>
 
 
 
@@ -368,19 +370,6 @@
                 </div>
             </div>
 
-
-
-            <div class="col-md-6">
-                <div class="form-group">
-                        <label for="url">Code:</label>
-                        @if($isEdit==true)
-                        <input type="text" name="code" required class="form-control" id="email" value="{{$employee->code}}">
-                        @else
-                        <input type="text" name="code" required class="form-control" id="email">
-                        @endif
-                        <span class="text-danger">{{$errors->first('code') ?? null}}</span>
-                </div>
-            </div>
 
 
 
@@ -418,6 +407,35 @@
                         <input type="text" name="bank_branch" required class="form-control" id="email">
                         @endif
                         <span class="text-danger">{{$errors->first('bank_branch') ?? null}}</span>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-md-6">
+                <div class="form-group">
+                        <label for="url">Code:</label>
+                        @if($isEdit==true)
+                        <input type="text" name="code" required class="form-control" id="email" value="{{$employee->code}}">
+                        @else
+                        <input type="text" name="code" required class="form-control" id="email">
+                        @endif
+                        <span class="text-danger">{{$errors->first('code') ?? null}}</span>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="form-group">
+                        <label for="father">Address:</label>
+                        @if($isEdit==true)
+                  <textarea name="address" id="" cols="30" rows="5" class="form-control">{{$employee->address}}</textarea>
+                        {{-- <input type="text" name="address" required class="form-control" value="{{$employee->address}}" > --}}
+                        @else
+                        <textarea name="address" id="" class="form-control" cols="30" rows="5"></textarea>
+                        @endif
+                        <span class="text-danger">{{$errors->first('address') ?? null}}</span>
                 </div>
             </div>
 

@@ -9,7 +9,7 @@ use App\Department;
 use App\Employee;
 class MachineAttendance extends Model
 {
-    protected $table='mytable';
+    protected $table='attendance_machine';
 
     public function employee()
     {

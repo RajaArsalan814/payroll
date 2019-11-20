@@ -17,13 +17,13 @@ class AttendanceController extends Controller
     public function create(){
 
         // $input  = '11-08-1990 23:23:00';
-           $checktime=MachineAttendance::pluck('CHECKTIME')->first();
-                    $new_date = date("Y-m-d ",strtotime($checktime));
-            $time = date("H:i:s",strtotime($checktime));
-return      $checktime=MachineAttendance::whereDate('CHECKTIME',$new_date)->where('USERID','36')->get();
-      $new_date = date("Y-m-d ",strtotime($checktime));
-      return  $checktime=MachineAttendance::whereTime('CHECKTIME',$checktime->CHECKTIME)->get();
-return  $checktime=MachineAttendance::whereTime('CHECKTIME',$new_date)->get();
+// return           $checktime=MachineAttendance::get();
+//                     $new_date = date("Y-m-d ",strtotime($checktime));
+//             $time = date("H:i:s",strtotime($checktime));
+// return      $checktime=MachineAttendance::whereDate('CHECKTIME',$new_date)->where('USERID','36')->get();
+//       $new_date = date("Y-m-d ",strtotime($checktime));
+//       return  $checktime=MachineAttendance::whereTime('CHECKTIME',$checktime->CHECKTIME)->get();
+// return  $checktime=MachineAttendance::whereTime('CHECKTIME',$new_date)->get();
 
 
 //  $date = Carbon::createFromFormat($format, $input);
@@ -40,21 +40,21 @@ return  $checktime=MachineAttendance::whereTime('CHECKTIME',$new_date)->get();
 // return            $to = \Carbon\Carbonformat('M d Y',$get_time);
         // return MachineAttendance::all();
 // return        MachineAttendance::where('CHECKTIME',$get_time)->get();
-        $to = \Carbon\Carbon::createFromFormat(' H:s', '02:00');
-        $from = \Carbon\Carbon::createFromFormat(' H:s', '03:00');
+        // $to = \Carbon\Carbon::createFromFormat(' H:s', '02:00');
+        // $from = \Carbon\Carbon::createFromFormat(' H:s', '03:00');
 
 
-        $diff_in_minutes = $to->diffInMinutes($from);
+        // $diff_in_minutes = $to->diffInMinutes($from);
         $attendance=Attendance::with('shift','employee')->get();
 
         $isEdit=false;
-
+        $attendance=MachineAttendance::with('shift')->get();
         return view('employee.employee.attendance',compact($isEdit,'isEdit',$attendance,'attendance'));
     }
 
     public function default_attendance(){
 
-        $default_attendance=Attendance::with('employee','shift')->where('check_in','')->orwhere('check_out','')->get();
+        $default_attendance=MachineAttendance::with('employee','shift')->where('check_in','')->orwhere('check_out','')->get();
         return view('employee.employee.default_attendance',compact($default_attendance,'default_attendance'));
     }
 
@@ -68,29 +68,29 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
     }
     public function attendance_by_date(Request $request){
 
-        $attendance=Attendance::with('employee')->where('date',$request->date)->get();
+        $attendance=MachineAttendance::with('employee')->where('date',$request->date)->get();
         return view('employee.employee.attendance',compact($attendance,'attendance'));
     }
 
     public function default_attendanceCheckInEdit($id){
-        $attendance=Attendance::with('employee')->where('id',$id)->first();
+        $attendance=MachineAttendance::with('employee')->where('id',$id)->first();
         return view('employee.employee.default_attendance_checkIn_edit',compact($attendance,'attendance'));
     }
 
     public function default_attendanceCheckOutEdit($id){
-        $attendance=Attendance::with('employee')->where('id',$id)->first();
+        $attendance=MachineAttendance::with('employee')->where('id',$id)->first();
         return view('employee.employee.default_attendance_checkOut_edit',compact($attendance,'attendance'));
     }
 
     public function default_attendance_checkIn_Update(Request $request,$id){
-        $attendance=Attendance::where('id',$id)->first();
+        $attendance=MachineAttendance::where('id',$id)->first();
         $attendance->check_in=$request->check_in;
         $attendance->save();
         return redirect()->route('attendance.create');
     }
 
     public function default_attendance_checkOut_Update(Request $request,$id){
-        $attendance=Attendance::where('id',$id)->first();
+        $attendance=MachineAttendance::where('id',$id)->first();
         $attendance->check_out=$request->check_out;
         $attendance->save();
         return redirect()->route('attendance.create');
@@ -98,7 +98,7 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
 
     public function default_attendance_by_date(Request $request){
 
-            $default_attendance=Attendance::where('date', $request->date)->Where(function ($query) {
+            $default_attendance=MachineAttendance::where('date', $request->date)->Where(function ($query) {
             $query->orWhere('check_in', '')
                 ->orWhere('check_out', '');
     })->get();
