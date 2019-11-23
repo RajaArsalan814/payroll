@@ -45,10 +45,10 @@ class AttendanceController extends Controller
 
 
         // $diff_in_minutes = $to->diffInMinutes($from);
-        $attendance=Attendance::with('shift','employee')->get();
+        $attendance=Attendance::with('employee.shifts')->get();
 
         $isEdit=false;
-        $attendance=MachineAttendance::with('shift')->get();
+        // $attendance=MachineAttendance::with('shift')->get();
         return view('employee.employee.attendance',compact($isEdit,'isEdit',$attendance,'attendance'));
     }
 
@@ -68,7 +68,7 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
     }
     public function attendance_by_date(Request $request){
 
-        $attendance=MachineAttendance::with('employee')->where('date',$request->date)->get();
+        $attendance=Attendance::with('employee.shifts')->where('attendance_date',$request->date)->get();
         return view('employee.employee.attendance',compact($attendance,'attendance'));
     }
 

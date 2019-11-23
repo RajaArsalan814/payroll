@@ -27,7 +27,7 @@ Route::post('/employee/update/{id}','EmployeeController@update')->name('employee
 Route::get('/employee/print/{id}','EmployeeController@print')->name('employee.print');
 
 
-Route::get('/employee/attendance/create','AttendanceController@create')->name('attendance.create');
+Route::get('/employee/attendance','AttendanceController@create')->name('attendance.create');
 Route::get('/employee/attendance/default','AttendanceController@default_attendance')->name('default_attendance');
 Route::get('/employee/attendance/date','AttendanceController@attendance_by_date')->name('attendance_by_date');
 Route::get('/employee/attendance/default/checkIn/edit/{id}','AttendanceController@default_attendanceCheckInEdit')->name('default_attendance_check_in.edit');

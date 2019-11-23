@@ -54,30 +54,84 @@
                             <tr>
                               <th>S:No</th>
                               <th>Employee Name</th>
-                              <th>Date</th>
-                              <th>Shift</th>
-                              <th>Check In </th>
-                              <th>Check Out</th>
-                              <th>Our Time</th>
+                              <th> Date</th>
+                              <th>Clock In  </th>
+                              {{-- <th>Check In Time </th> --}}
+                              <th>Clock Out </th>
+                              {{-- <th>Check Out Time</th> --}}
+                              <th>O.T</th>
+                              <th>Work Hrs</th>
+                              <th>Late In Min</th>
+                              <th>Early In Min</th>
+                              <th>Remarks</th>
                             </tr>
                             @foreach ($attendance as $item)
                             <tr>
                                 <td  style="display:none">
-                                {{$check_in=Carbon\Carbon::parse($item->check_in)}}
-
+                                    {{$item->employee->shifts->end_time}}
+                                    {{$item->check_out_time}}
+                                {{-- {{$check_in=Carbon\Carbon::parse($item->check_in)}} --}}
                                 {{--  {{$check_in_time = date("h:i:s ",strtotime($check_in))}}  --}}
                                 {{--  {{$check_out_time = date("h:i:s ",strtotime($check_out))}}  --}}
-                                {{$check_out=Carbon\Carbon::parse($item->check_out)}}
-                                {{$shift_end_time=Carbon\Carbon::parse($item->shift->end_time)}}
-                                {{$over_time=$shift_end_time->diffInHours($item->check_out)}}
+
+                                {{-- Working Hours --}}
+                                {{$check_start_time=Carbon\Carbon::parse($item->check_in_time)}}
+                                {{$check_end_time=Carbon\Carbon::parse($item->check_out_time)}}
+                                {{$working_hours=$check_end_time->diffInHours($check_start_time)}}
+                                {{-- $totalDuration = $finishTime->diffInHours($startTime); --}}
+
+                                {{-- $diff = $t1->diff($t2); --}}
+                                {{-- Over Time --}}
+                                 {{$shift_end_time=Carbon\Carbon::parse($item->employee->shifts->end_time)}}
+                                {{$check_out_time=Carbon\Carbon::parse($item->check_out_time)}}
+                                {{$over_time=$shift_end_time->diffInHours($check_out_time)}}
+                                    {{-- Late in Time  --}}
+                                {{$start_time=Carbon\Carbon::parse($item->employee->shifts->start_time)}}
+                                {{$check_in_time=Carbon\Carbon::parse($item->check_in_time)}}
+                                {{$late_in_minutes=$check_in_time->diffInMinutes($start_time)}}
+                                {{--  Early In Time --}}
+                                {{$shift_start_time=Carbon\Carbon::parse($item->employee->shifts->start_time)}}
+                                {{$check_in_time=Carbon\Carbon::parse($item->check_in_time)}}
+                                {{$early_in_minutes=$check_in_time->diffInMinutes($shift_start_time)}}
                                 </td>
                             <td>{{$item->id}}</td>
                             <td>{{$item->employee->name}}</td>
-                            <td>{{$item->date}}</td>
-                            <td>{{$item->shift->shift_desc}}</td>
-                            <td>{{$check_in->toTimeString()}}</td>
+                            {{-- <td>{{$item->employee->shifts->shift_desc}}</td> --}}
+                            <td>{{$item->attendance_date}}</td>
+                            {{-- <td>{{$item->check_in_date}}</td> --}}
+                            <td>{{$item->check_in_time}}</td>
+                            {{-- <td>{{$item->check_out_date}}</td> --}}
+                            <td>{{$item->check_out_time}}</td>
+                            <td>{{$over_time}}</td>
+                            <td>{{$working_hours}}</td>
+                            @if($check_in_time > $start_time)
+                            <td>{{$late_in_minutes}}</td>
+                            @else
+                            <td>0</td>
+                            @endif
+                            @if($shift_start_time > $check_in_time )
+                            <td>{{$early_in_minutes}}</td>
+                            @else
+                            <td>0</td>
+                            @endif
+                            @if($check_in_time )
+                            <td>Present</td>
+                            {{-- @if($item->check_out_time = '17:00')
+                            <td>Half Day</td>
+                            @else
+                            <td>Full  Day</td>
+                            @endif --}}
+                            @else
+                            <td>Absent</td>
+                            @endif
+                             {{-- if($check_out_time <= '17:00')
+                            <td>Half Day</td>
+                            @else
+                            <td>Absent</td>
+                            @endif --}}
+                            {{-- <td>{{$check_in->toTimeString()}}</td>
                             <td>{{$check_out->toTimeString()}}</td>
-                            <td>{{ $over_time }}</td>
+                            <td>{{ $over_time }}</td> --}}
                             </tr>
                             @endforeach
                           </table>
