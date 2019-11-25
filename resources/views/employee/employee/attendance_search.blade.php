@@ -51,6 +51,9 @@
                                     @endforeach
                                 </select>
                     </div>
+                    <div class="col-md-3" >
+                        <input type="month"  class="form-control" name="month">
+                    </div>
                     <button class="btn btn-primary">Search</button>
                 </form>
 
@@ -79,7 +82,7 @@
                                     @endforeach
                                     <td><p>Record Found Click On File To get Record</p></td>
                                     <td>
-                                    <a href="{{route('attendance_view',['designation_id'=>$item->employee->designation_id,'department_id'=>$item->employee->department_id])}}" class="fa fa-file"></a>
+                                    <a href="{{route('attendance_view',['designation_id'=>$item->employee->designation_id,'department_id'=>$item->employee->department_id,'month_year'=>$item->attendance_date])}}" class="fa fa-file"></a>
                                     </td>
                             </tr>
                             @else

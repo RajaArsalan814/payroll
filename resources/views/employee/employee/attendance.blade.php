@@ -51,6 +51,9 @@
                                     @endforeach
                                 </select>
                     </div>
+                    <div class="col-md-3" >
+                        <input type="month"  class="form-control" name="month">
+                    </div>
                     <button class="btn btn-primary">Search</button>
                 </form>
 
