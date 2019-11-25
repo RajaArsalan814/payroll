@@ -122,7 +122,7 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
             })
             ->whereHas('employee', function ($qu) use($request){
             $qu->where('department_id', $request->department_id);
-        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->get();
+        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->orderBy('employee_id')->get();
 
 
 
@@ -144,11 +144,18 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
             })
             ->whereHas('employee', function ($qu) use($department_id){
             $qu->where('department_id', $department_id);
-        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->get();
+        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->groupBy('employee_id')->get();
+
+        $attendance_view_table=Attendance::with('employee.shifts','employee.designations','employee.departments')->whereHas('employee', function ($q) use($designation_id){
+            $q->where('designation_id', $designation_id);
+            })
+            ->whereHas('employee', function ($qu) use($department_id){
+            $qu->where('department_id', $department_id);
+        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->orderBy('employee_id')->get();
 
 // $attendance_view=Attendance::with('employee.shifts','employee.designations','employee.departments')->where('attendance_date',$date)->get();
 
-        return view('employee.employee.attendance_view',compact($attendance_view,'attendance_view'));
+        return view('employee.employee.attendance_view',compact($attendance_view,'attendance_view',$attendance_view_table,'attendance_view_table'));
 
     }
 

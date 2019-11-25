@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    @foreach ($attendance_view as $item)
+     @foreach ($attendance_view as $item)
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -30,19 +30,22 @@
                 <div class="col-md-6">
                     <h6>Designation  : <span>{{$item->employee->designations->name}}</span></h6>
                 </div>
+                @endforeach
                 <div class="col-md-12">
                     <table class="table table-hover">
                         <tr>
-                                <th> Date</th>
-                                <th>Clock In  </th>
-                                <th>Clock Out </th>
-                                <th>O.T</th>
+                            <th> Date</th>
+                            <th>Clock In  </th>
+                            <th>Clock Out </th>
+                            <th>O.T</th>
                                 <th>Work Hrs</th>
                                 <th>Late In Min</th>
                                 <th>Early In Min</th>
                                 <th>Remarks</th>
-                        </tr>
-                        <tr>
+                            </tr>
+                            {{--  @foreach ($attendance_view as $item)  --}}
+                            @foreach ($attendance_view_table as $item)
+                    <tr>
                             <td  style="display:none">
                             {{$item->employee->shifts->end_time}}
                             {{$item->check_out_time}}
@@ -84,12 +87,11 @@
                         <td>Absent</td>
                         @endif
                     </tr>
-
+                    @endforeach
                 </table>
             </div>
             </div>
         </div>
-        @endforeach
     </body>
     </html>
 
