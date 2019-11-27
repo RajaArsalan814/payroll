@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Attendance;
 use App\Employee;
 use App\Department;
+use App\Designation;
 use App\Role;
 use Storage;
 use Illuminate\Http\Request;
@@ -45,11 +46,13 @@ class AttendanceController extends Controller
 
 
         // $diff_in_minutes = $to->diffInMinutes($from);
-        $attendance=Attendance::with('shift','employee')->get();
-
+        $attendance=Attendance::with('employee.shifts')->get();
+        $designation=Designation::get();
+        $department=Department::get();
         $isEdit=false;
-        $attendance=MachineAttendance::with('shift')->get();
-        return view('employee.employee.attendance',compact($isEdit,'isEdit',$attendance,'attendance'));
+        // $attendance=MachineAttendance::with('shift')->get();
+        return view('employee.employee.attendance',compact($isEdit,'isEdit',$attendance,'attendance',$designation,'designation'
+        ,$department,'department'));
     }
 
     public function default_attendance(){
@@ -65,11 +68,6 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
         $sum_result = DB::select($sql);
         $employee=Employee::with('roles','shifts','designations','departments')->get();
         return view('employee.employee.employee',compact($employee,'employee',$sum_result,'sum_result'));
-    }
-    public function attendance_by_date(Request $request){
-
-        $attendance=MachineAttendance::with('employee')->where('date',$request->date)->get();
-        return view('employee.employee.attendance',compact($attendance,'attendance'));
     }
 
     public function default_attendanceCheckInEdit($id){
@@ -104,6 +102,61 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
     })->get();
 // return        $default_attendance=Attendance::with('employee')->where('date',$request->date)->orwhere('check_in','')->orwhere('check_out','')->get();
         return view('employee.employee.default_attendance',compact($default_attendance,'default_attendance'));
+    }
+
+    public function attendance_by_date(Request $request){
+
+        // return $request->all();
+       $date = \Carbon\Carbon::parse($request->month);
+       $month = $date->month;
+       $year = $date->year;
+        //  return   Attendance::with(['employee' , function ($query) use ($request) {
+        //     $query->where('designation_id',$request->designation_id);
+        //     // $query->Where('id', '=',$request->department_id);
+        // }])->get();
+        $designation=Designation::get();
+        $department=Department::get();
+
+         $attendance_search=Attendance::with('employee.designations','employee.departments')->whereHas('employee', function ($q) use($request){
+            $q->where('designation_id', $request->designation_id);
+            })
+            ->whereHas('employee', function ($qu) use($request){
+            $qu->where('department_id', $request->department_id);
+        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->orderBy('employee_id')->get();
+
+
+
+// return $attendance=Attendance::with('employee.designations','employee.departments')->where('employee.designation_id',$request->designation_id)
+//         ->get();
+        return view('employee.employee.attendance_search',compact($attendance_search,'attendance_search',$designation,'designation',$department,'department'));
+    }
+
+
+    public function attendance_view($designation_id,$department_id,$month_year)
+    {
+
+        $date = \Carbon\Carbon::parse($month_year);
+        $month = $date->month;
+        $year = $date->year;
+
+        $attendance_view=Attendance::with('employee.shifts','employee.designations','employee.departments')->whereHas('employee', function ($q) use($designation_id){
+            $q->where('designation_id', $designation_id);
+            })
+            ->whereHas('employee', function ($qu) use($department_id){
+            $qu->where('department_id', $department_id);
+        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->groupBy('employee_id')->get();
+
+        $attendance_view_table=Attendance::with('employee.shifts','employee.designations','employee.departments')->whereHas('employee', function ($q) use($designation_id){
+            $q->where('designation_id', $designation_id);
+            })
+            ->whereHas('employee', function ($qu) use($department_id){
+            $qu->where('department_id', $department_id);
+        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->orderBy('employee_id')->get();
+
+// $attendance_view=Attendance::with('employee.shifts','employee.designations','employee.departments')->where('attendance_date',$date)->get();
+
+        return view('employee.employee.attendance_view',compact($attendance_view,'attendance_view',$attendance_view_table,'attendance_view_table'));
+
     }
 
 }

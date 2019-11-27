@@ -26,10 +26,10 @@ Route::get('/employee/edit/{id}','EmployeeController@edit')->name('employee.edit
 Route::post('/employee/update/{id}','EmployeeController@update')->name('employee.update');
 Route::get('/employee/print/{id}','EmployeeController@print')->name('employee.print');
 
-
-Route::get('/employee/attendance/create','AttendanceController@create')->name('attendance.create');
+Route::get('/employee/attendance/view/{designation_id}/{department_id}/{month_year}','AttendanceController@attendance_view')->name('attendance_view');
+Route::get('/employee/attendance','AttendanceController@create')->name('attendance.create');
 Route::get('/employee/attendance/default','AttendanceController@default_attendance')->name('default_attendance');
-Route::get('/employee/attendance/date','AttendanceController@attendance_by_date')->name('attendance_by_date');
+Route::get('/employee/attendance/date_search','AttendanceController@attendance_by_date')->name('attendance_by_date');
 Route::get('/employee/attendance/default/checkIn/edit/{id}','AttendanceController@default_attendanceCheckInEdit')->name('default_attendance_check_in.edit');
 Route::get('/employee/attendance/default/checkOut/edit/{id}','AttendanceController@default_attendanceCheckOutEdit')->name('default_attendance_check_out.edit');
 Route::post('/employee/attendance/default/checkIn/update/{id}','AttendanceController@default_attendance_checkIn_Update')->name('default_attendance_check_in.update');

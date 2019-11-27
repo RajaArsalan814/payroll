@@ -69,54 +69,32 @@
                               <th>Late In Min</th>
                               <th>Early In Min</th>
                               <th>Remarks</th>
+                              <th>View</th>
                             </tr>
-
+                            @if($attendance_search->count() >  0)
                             <tr>
-                                    @foreach ($attendance as $item)
-                                    <td  style="display:none">
-                                    {{$item->employee->shifts->end_time}}
-                                    {{$item->check_out_time}}
-                                    {{-- Working Hours --}}
-                                    {{$check_start_time=Carbon\Carbon::parse($item->check_in_time)}}
-                                    {{$check_end_time=Carbon\Carbon::parse($item->check_out_time)}}
-                                    {{$working_hours=$check_end_time->diffInHours($check_start_time)}}
-                                    {{-- Over Time --}}
-                                     {{$shift_end_time=Carbon\Carbon::parse($item->employee->shifts->end_time)}}
-                                    {{$check_out_time=Carbon\Carbon::parse($item->check_out_time)}}
-                                    {{$over_time=$shift_end_time->diffInHours($check_out_time)}}
-                                        {{-- Late in Time  --}}
-                                    {{$start_time=Carbon\Carbon::parse($item->employee->shifts->start_time)}}
-                                    {{$check_in_time=Carbon\Carbon::parse($item->check_in_time)}}
-                                    {{$late_in_minutes=$check_in_time->diffInMinutes($start_time)}}
-                                    {{--  Early In Time --}}
-                                    {{$shift_start_time=Carbon\Carbon::parse($item->employee->shifts->start_time)}}
-                                    {{$check_in_time=Carbon\Carbon::parse($item->check_in_time)}}
-                                    {{$early_in_minutes=$check_in_time->diffInMinutes($shift_start_time)}}
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    @foreach ($attendance_search as $item)
+                                    <td style="display:none">{{$item->employee->designation_id}}{{$item->employee->department_id}}</td>
+                                    @endforeach
+                                    <td><p>Record Found Click On File To get Record</p></td>
+                                    <td>
+                                    <a href="{{route('attendance_view',['designation_id'=>$item->employee->designation_id,'department_id'=>$item->employee->department_id,'month_year'=>$item->attendance_date])}}" class="fa fa-file"></a>
                                     </td>
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->employee->name}}</td>
-                                <td>{{$item->attendance_date}}</td>
-                                <td>{{$item->check_in_time}}</td>
-                                <td>{{$item->check_out_time}}</td>
-                                <td>{{$over_time}}</td>
-                                <td>{{$working_hours}}</td>
-                                @if($check_in_time > $start_time)
-                                <td>{{$late_in_minutes}}</td>
-                                @else
-                                <td>0</td>
-                                @endif
-                                @if($shift_start_time > $check_in_time )
-                                <td>{{$early_in_minutes}}</td>
-                                @else
-                                <td>0</td>
-                                @endif
-                                @if($check_in_time )
-                                <td>Present</td>
-                                @else
-                                <td>Absent</td>
-                                @endif
                             </tr>
-                            @endforeach
+                            @else
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><p>No Record Found</p></td>
+                            </tr>
+                            @endif
                           </table>
 
 
