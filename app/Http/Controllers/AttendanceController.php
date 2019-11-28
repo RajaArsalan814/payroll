@@ -55,11 +55,6 @@ class AttendanceController extends Controller
         ,$department,'department'));
     }
 
-    public function default_attendance(){
-
-        $default_attendance=MachineAttendance::with('employee','shift')->where('check_in','')->orwhere('check_out','')->get();
-        return view('employee.employee.default_attendance',compact($default_attendance,'default_attendance'));
-    }
 
     public function index(){
         // SELECT column_name(s)
@@ -70,26 +65,43 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
         return view('employee.employee.employee',compact($employee,'employee',$sum_result,'sum_result'));
     }
 
+    public function default_attendance(Request $request){
+
+        $default_attendance=Attendance::with('employee')
+        ->where('check_in_time','')->orwhere('check_out_time','')->get();
+        //    $default_attendance=MachineAttendance::with('employee','shift')->where('check_in','')->orwhere('check_out','')->get();
+           return view('employee.employee.default_attendance',compact($default_attendance,'default_attendance'));
+       }
+   
+
     public function default_attendanceCheckInEdit($id){
-        $attendance=MachineAttendance::with('employee')->where('id',$id)->first();
+        $attendance=Attendance::with('employee')->where('id',$id)->first();
+        // dd($attendance);
         return view('employee.employee.default_attendance_checkIn_edit',compact($attendance,'attendance'));
     }
 
     public function default_attendanceCheckOutEdit($id){
-        $attendance=MachineAttendance::with('employee')->where('id',$id)->first();
+        $attendance=Attendance::with('employee')->where('id',$id)->first();
+        // $attendance=MachineAttendance::with('employee')->where('id',$id)->first();
         return view('employee.employee.default_attendance_checkOut_edit',compact($attendance,'attendance'));
     }
 
     public function default_attendance_checkIn_Update(Request $request,$id){
-        $attendance=MachineAttendance::where('id',$id)->first();
-        $attendance->check_in=$request->check_in;
+        // $data=$request->check_in_time;
+        // dd($data);
+        $attendance=Attendance::where('id',$id)->first();        
+        // $attendance=MachineAttendance::where('id',$id)->first();
+        $attendance->check_in_time_modify=$request->check_in_time;
         $attendance->save();
         return redirect()->route('attendance.create');
     }
 
     public function default_attendance_checkOut_Update(Request $request,$id){
-        $attendance=MachineAttendance::where('id',$id)->first();
-        $attendance->check_out=$request->check_out;
+        $attendance=Attendance::where('id',$id)->first();        
+        // $attendance=MachineAttendance::where('id',$id)->first();
+        $attendance->check_out_time_modify=$request->check_out_time;
+        // $attendance=MachineAttendance::where('id',$id)->first();
+        // $attendance->check_out=$request->check_out;
         $attendance->save();
         return redirect()->route('attendance.create');
     }

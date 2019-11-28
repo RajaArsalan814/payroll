@@ -56,7 +56,6 @@
                               <th>Employee Id</th>
                               <th>Employee Name</th>
                               <th>Date</th>
-                              <th>Shift</th>
                               <th>Check In </th>
                               <th>Check Out</th>
                               <th>Update In </th>
@@ -66,10 +65,13 @@
                             <tr>
                               <td>{{$item->id}}</td>
                               <td>{{$item->employee->name}}</td>
-                              <td>{{ Carbon\Carbon::parse($item['date'])->format('d-m-Y') }}</td>
-                              <td>{{$item->shift->shift_desc}}</td>
-                              <td>{{ Carbon\Carbon::parse($item['check_in'])->format('H:i') }}</td>
-                              <td>{{ Carbon\Carbon::parse($item['check_out'])->format('H:i') }}</td>
+                              <td>{{ Carbon\Carbon::parse($item['attendance_date'])->format('d-m-Y') }}</td>
+                              <td>{{ Carbon\Carbon::parse($item['check_in_time'])->format('H:i:s') }}</td>
+                              <td>{{ Carbon\Carbon::parse($item['check_out_time'])->format('H:i:s') }}</td>
+                              {{--  <td>{{$item->shifts->shift_desc}}</td>  --}}
+
+                              {{--  <td>{{ Carbon\Carbon::parse($item['check_in'])->format('H:i') }}</td>
+                              <td>{{ Carbon\Carbon::parse($item['check_out'])->format('H:i') }}</td>  --}}
                 {{--  <td><a href="{{route('default_attendance_check_in.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>  --}}
                 <td><a href="{{route('default_attendance_check_in.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>
                 <td><a href="{{route('default_attendance_check_out.edit',['id'=>$item->id])}}"> <i class="fa fa-edit edit"> </i> </a></td>
