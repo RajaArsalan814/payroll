@@ -77,7 +77,8 @@
                                     {{$item->employee->shifts->end_time}}
                                     {{$item->check_out_time}}
                                     {{-- Working Hours --}}
-                                    {{$check_start_time=Carbon\Carbon::parse($item->check_in_time)}}
+                                    {{$my_check_out_time=Carbon\Carbon::parse($item->check_out_time)->format('H:i')}}
+                                    {{$check_start_time=Carbon\Carbon::parse($item->check_in_time)->format('H:i')}}
                                     {{$check_end_time=Carbon\Carbon::parse($item->check_out_time)}}
                                     {{$working_hours=$check_end_time->diffInHours($check_start_time)}}
                                     {{-- Over Time --}}
@@ -96,8 +97,8 @@
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->employee->name}}</td>
                                 <td>{{$item->attendance_date}}</td>
-                                <td>{{$item->check_in_time}}</td>
-                                <td>{{$item->check_out_time}}</td>
+                                <td>{{$check_start_time}}</td>
+                                <td>{{$my_check_out_time}}</td>
                                 <td>{{$over_time}}</td>
                                 <td>{{$working_hours}}</td>
                                 @if($check_in_time > $start_time)

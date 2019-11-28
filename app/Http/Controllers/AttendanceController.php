@@ -106,10 +106,20 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
 
     public function attendance_by_date(Request $request){
 
+    // return    $employee=Employee::with('attendance')->get();
+        $date = \Carbon\Carbon::parse($request->month);
+        $month = $date->month;
+        $year = $date->year;
+        $department_id=$request->department_id;
+        $designation_id=$request->designation_id;
+        $attendance_search=Employee::with('attendance','departments','designations')->whereHas('attendance', function ($q) use($month,$year){
+        $q->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year);
+        })->whereHas('departments', function ($q) use($department_id){
+            $q->where('department_id',$department_id);
+            })->whereHas('designations', function ($q) use($designation_id){
+                $q->where('designation_id',$designation_id);
+                })->get();
         // return $request->all();
-       $date = \Carbon\Carbon::parse($request->month);
-       $month = $date->month;
-       $year = $date->year;
         //  return   Attendance::with(['employee' , function ($query) use ($request) {
         //     $query->where('designation_id',$request->designation_id);
         //     // $query->Where('id', '=',$request->department_id);
@@ -117,12 +127,12 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
         $designation=Designation::get();
         $department=Department::get();
 
-         $attendance_search=Attendance::with('employee.designations','employee.departments')->whereHas('employee', function ($q) use($request){
-            $q->where('designation_id', $request->designation_id);
-            })
-            ->whereHas('employee', function ($qu) use($request){
-            $qu->where('department_id', $request->department_id);
-        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->orderBy('employee_id')->get();
+        // $attendance_search=Attendance::with('employee.designations','employee.departments')->whereHas('employee', function ($q) use($request){
+        //     $q->where('designation_id', $request->designation_id);
+        //     })
+        //     ->whereHas('employee', function ($qu) use($request){
+        //     $qu->where('department_id', $request->department_id);
+        // })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->orderBy('employee_id')->get();
 
 
 
@@ -135,27 +145,42 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
     public function attendance_view($designation_id,$department_id,$month_year)
     {
 
+
+
         $date = \Carbon\Carbon::parse($month_year);
         $month = $date->month;
         $year = $date->year;
 
-        $attendance_view=Attendance::with('employee.shifts','employee.designations','employee.departments')->whereHas('employee', function ($q) use($designation_id){
-            $q->where('designation_id', $designation_id);
-            })
-            ->whereHas('employee', function ($qu) use($department_id){
-            $qu->where('department_id', $department_id);
-        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->groupBy('employee_id')->get();
 
-        $attendance_view_table=Attendance::with('employee.shifts','employee.designations','employee.departments')->whereHas('employee', function ($q) use($designation_id){
-            $q->where('designation_id', $designation_id);
-            })
-            ->whereHas('employee', function ($qu) use($department_id){
-            $qu->where('department_id', $department_id);
-        })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->orderBy('employee_id')->get();
+        // $attendance_view=Employee::with('attendance','departments','designations')->whereHas('attendance', function ($q) use($month,$year){
+        //     $q->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year);
+        // })->get();
+
+        $attendance_view=Employee::with('attendance','departments','designations')->whereHas('attendance', function ($q) use($month,$year){
+            $q->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year);
+            })->whereHas('departments', function ($q) use($department_id){
+                $q->where('department_id',$department_id);
+                })->whereHas('designations', function ($q) use($designation_id){
+                    $q->where('designation_id',$designation_id);
+                    })->get();
+
+        // $attendance_view=Attendance::with('employee.shifts','employee.designations','employee.departments')->whereHas('employee', function ($q) use($designation_id){
+        //     $q->where('designation_id', $designation_id);
+        //     })
+        //     ->whereHas('employee', function ($qu) use($department_id){
+        //     $qu->where('department_id', $department_id);
+        // })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->groupBy('employee_id')->get();
+
+        // $attendance_view_table=Attendance::with('employee.shifts','employee.designations','employee.departments')->whereHas('employee', function ($q) use($designation_id){
+        //     $q->where('designation_id', $designation_id);
+        //     })
+        //     ->whereHas('employee', function ($qu) use($department_id){
+        //     $qu->where('department_id', $department_id);
+        // })->whereMonth('attendance_date',$month)->whereYear('attendance_date',$year)->orderBy('employee_id')->get();
 
 // $attendance_view=Attendance::with('employee.shifts','employee.designations','employee.departments')->where('attendance_date',$date)->get();
 
-        return view('employee.employee.attendance_view',compact($attendance_view,'attendance_view',$attendance_view_table,'attendance_view_table'));
+        return view('employee.employee.attendance_view',compact($attendance_view,'attendance_view'));
 
     }
 

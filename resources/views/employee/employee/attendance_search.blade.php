@@ -78,11 +78,15 @@
                                     <td></td>
                                     <td></td>
                                     @foreach ($attendance_search as $item)
-                                    <td style="display:none">{{$item->employee->designation_id}}{{$item->employee->department_id}}</td>
+                                    @foreach ($item->attendance as $check)
+                                    <td style="display:none" >{{$check->attendance_date}}</td>
+                                    @endforeach
+                                    <td style="display:none">{{$item->designations->id}}</td>
+                                    <td style="display:none">{{$item->departments->id}}</td>
                                     @endforeach
                                     <td><p>Record Found Click On File To get Record</p></td>
                                     <td>
-                                    <a href="{{route('attendance_view',['designation_id'=>$item->employee->designation_id,'department_id'=>$item->employee->department_id,'month_year'=>$item->attendance_date])}}" class="fa fa-file"></a>
+                <a href="{{route('attendance_view',['designation_id'=>$item->designations->id,'department_id'=>$item->departments->id,'month_year'=>$check->attendance_date])}}" class="fa fa-file"></a>
                                     </td>
                             </tr>
                             @else
