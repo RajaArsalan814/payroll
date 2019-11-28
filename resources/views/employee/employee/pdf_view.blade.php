@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+{{--  !DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  --}}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    
+    {{--  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{asset(url(''))}}/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset(url(''))}}/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset(url(''))}}/bower_components/font-awesome/css/font-awesome.min.css">  --}}
 
 </head>
 <body>
@@ -21,7 +24,10 @@
             <br>
             <div class="col-md-3"></div>
             <div class="col-md-3">
-                {{--  <a href="{{route('pdf')}}" class="btn btn-primary">PDF</a>  --}}
+                    @foreach ($item->attendance as $check)
+                    {{--  <td  >{{$check->attendance_date}}</td>  --}}
+                    @endforeach
+
             </div>
             <div class="col-md-6">
 
@@ -103,43 +109,6 @@
                     </tr>
                 </table>
 
-                    {{--  <div class="container">
-                        <h5>Summary</h5>
-                        <div class="row">
-                            <div class="col-md-4">
-
-                                <p>No Of Presents :
-                                        <span>{{$check->count()}}</span>
-                                    </p>
-                            </div>
-                                <div class="col-md-4">
-                                        <p>No Of Absents : 2</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                            <p>No Of Leaves : 2</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                                <p>No Of Late Arrivals : 2</p>
-                                            </div>
-                                            <div class="col-md-4">
-                                                    <p>No Of Half Days : 2</p>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                        <p>No Of Early Departure : 2</p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                            <p>No Of Hours (O.T) : 2</p>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                                <p>No Of Holidays : 2</p>
-                                                            </div>
-
-                                                        <div class="col-md-4">
-                                                                <p>No Of Holidays Half Days : 2</p>
-                                                            </div>
-                        </div>
-                    </div>  --}}
 
             </div>
         </div>
@@ -161,4 +130,3 @@
     @endforeach
     </body>
     </html>
-

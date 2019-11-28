@@ -15,7 +15,6 @@ use Carbon\Carbon;
 use App\MachineAttendance;
 use PDF;
 use App\My;
-
 class AttendanceController extends Controller
 {
     public function create(){
@@ -179,7 +178,10 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
                     $q->where('designation_id',$designation_id);
                     })->paginate(1);
 
-               
+                    // $pdf =PDF::loadView('employee.employee.attendance_view',compact('attendance_view'));
+                    // return $pdf->download('ars.pdf');
+                    // $pdf = PDF::loadView('employee.employee.attendance_view',compact('attendance_view', $attendance_view));  
+                    // return $pdf->download('medium.pdf');
 
 // dd($attendance_view);
         // $attendance_view=Attendance::with('employee.shifts','employee.designations','employee.departments')->whereHas('employee', function ($q) use($designation_id){
@@ -203,7 +205,8 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
     }
 
     public function pdf($designation_id,$department_id,$month_year){
-       
+        
+
         $date = \Carbon\Carbon::parse($month_year);
         $month = $date->month;
         $year = $date->year;
@@ -216,16 +219,10 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
                     $q->where('designation_id',$designation_id);
                     })->paginate(1);
 
-                    // $pdf =PDF::loadView('employee.employee.attendance_view',compact('attendance_view'));
-                    // return $pdf->download('ars.pdf');
-                    // $pdf = PDF::loadView('employee.employee.attendance_view',compact('attendance_view', $attendance_view));  
-                    // return $pdf->download('medium.pdf');
-
-
-        // $my=My::paginate(1);
         // return view('employee.employee.pdf_view',compact($my,'my'));
           $pdf = PDF::loadView('employee.employee.pdf_view', compact('attendance_view',$attendance_view));  
-          return $pdf->download('medium.pdf');
+          return $pdf->stream();
+        //   return $pdf->download('medium.pdf');
     }
 
  
