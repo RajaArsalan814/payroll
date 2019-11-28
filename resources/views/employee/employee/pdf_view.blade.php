@@ -21,11 +21,7 @@
             <br>
             <div class="col-md-3"></div>
             <div class="col-md-3">
-                    @foreach ($item->attendance as $check)
-                    {{--  <td  >{{$check->attendance_date}}</td>  --}}
-                    @endforeach
-
-                <a href="{{route('pdf',['designation_id'=>$item->designations->id,'department_id'=>$item->departments->id,'month_year'=>$check->attendance_date])}}" class="btn btn-primary">PDF</a>
+                {{--  <a href="{{route('pdf')}}" class="btn btn-primary">PDF</a>  --}}
             </div>
             <div class="col-md-6">
 
