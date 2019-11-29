@@ -154,7 +154,7 @@
         <h5>Summary </h5>
     </div>
     <div class="a_left" style="font-size:13px;">
-            <p>No Of Presents :   <span>0</span></p> 
+            <p>No Of Presents :   <span>{{$item->attendance_count}}</span></p> 
             <p>No Of Late Arrivals :   <span>0</span></p> 
             <p>No Of Hours(OT) :   <span>0</span></p> 
     </div>

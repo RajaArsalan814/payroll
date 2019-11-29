@@ -106,7 +106,6 @@
                             @endif
                             </tr>
                             @endforeach
-
                     </tr>
                             </tbody>
                 </table>
@@ -115,17 +114,7 @@
                         <div class="row">
                             <div class="col-md-4">
 
-                                <p>No Of Presents :
-                                    <span>
-                                        @if($check_in_time  AND $check_out_time >= $item->shifts->end_time)
-                                        @endif
-                                        {{-- {{count($check->check_in_time)}} --}}
-                                        @foreach ($item->attendance as $check)
-                                        
-                                        {!! count($check->check_in_time) !!}
-                                        @endforeach 
-                                    {{-- {{$check->count()}} --}}
-                                    </span>
+                                <p>No Of Presents : {{$item->attendance_count}}
                                 </p>
 
                             </div>

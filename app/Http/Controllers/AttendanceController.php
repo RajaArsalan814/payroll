@@ -176,7 +176,7 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
                 $q->where('department_id',$department_id);
                 })->whereHas('designations', function ($q) use($designation_id){
                     $q->where('designation_id',$designation_id);
-                    })->get();
+                    })->withCount('attendance')->get();
                     // $pdf =PDF::loadView('employee.employee.attendance_view',compact('attendance_view'));
                     // return $pdf->download('ars.pdf');
                     // $pdf = PDF::loadView('employee.employee.attendance_view',compact('attendance_view', $attendance_view));  
@@ -216,7 +216,7 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
                 $q->where('department_id',$department_id);
                 })->whereHas('designations', function ($q) use($designation_id){
                     $q->where('designation_id',$designation_id);
-                    })->get();
+                    })->withCount('attendance')->get();
 
         // return view('employee.employee.pdf_view',compact($my,'my'));
           $pdf = PDF::loadView('employee.employee.pdf_view', compact('attendance_view',$attendance_view));  
