@@ -42,6 +42,7 @@
                 </div>
                 <div class="col-md-12">
                     <table class="table table-hover">
+                            <thead>
                         <tr>
                             <th> Date</th>
                             <th>Clock In  </th>
@@ -52,8 +53,10 @@
                             <th>Early In Min</th>
                             <th>Remarks</th>
                             </tr>
+                            </thead>
                             {{--  @foreach ($attendance_view as $item)  --}}
                             {{--  @foreach ($attendance_view_table as $item)  --}}
+                            <tbody>
                     <tr>
 
                             @foreach ($item->attendance as $check)
@@ -105,16 +108,25 @@
                             @endforeach
 
                     </tr>
+                            </tbody>
                 </table>
-
-                    {{--  <div class="container">
+                     <div class="container">
                         <h5>Summary</h5>
                         <div class="row">
                             <div class="col-md-4">
 
                                 <p>No Of Presents :
-                                        <span>{{$check->count()}}</span>
-                                    </p>
+                                    <span>
+                                    {{-- @foreach ($item->attendance as $check)
+                                    @if($check_in_time  AND $check_out_time >= $item->shifts->end_time)
+                                    {{count($check_in_time)}}
+                                    @endif
+                                    @endforeach --}}
+                                    {{-- {{count($check->check_in_time)}} --}}
+                                    {{$check->count()}}
+                                    </span>
+                                </p>
+
                             </div>
                                 <div class="col-md-4">
                                         <p>No Of Absents : 2</p>
@@ -143,7 +155,7 @@
                                                                 <p>No Of Holidays Half Days : 2</p>
                                                             </div>
                         </div>
-                    </div>  --}}
+                    </div> 
 
             </div>
         </div>
@@ -162,7 +174,8 @@
             </div>
         </div>
 
-    @endforeach
+        @endforeach
+
     </body>
     </html>
 

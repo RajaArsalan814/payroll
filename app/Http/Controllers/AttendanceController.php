@@ -177,7 +177,6 @@ $sql = "SELECT name,english,urdu,science,math,( english + urdu + science + math)
                 })->whereHas('designations', function ($q) use($designation_id){
                     $q->where('designation_id',$designation_id);
                     })->paginate(1);
-
                     // $pdf =PDF::loadView('employee.employee.attendance_view',compact('attendance_view'));
                     // return $pdf->download('ars.pdf');
                     // $pdf = PDF::loadView('employee.employee.attendance_view',compact('attendance_view', $attendance_view));  
