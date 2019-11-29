@@ -117,13 +117,14 @@
 
                                 <p>No Of Presents :
                                     <span>
-                                    {{-- @foreach ($item->attendance as $check)
-                                    @if($check_in_time  AND $check_out_time >= $item->shifts->end_time)
-                                    {{count($check_in_time)}}
-                                    @endif
-                                    @endforeach --}}
-                                    {{-- {{count($check->check_in_time)}} --}}
-                                    {{$check->count()}}
+                                        @if($check_in_time  AND $check_out_time >= $item->shifts->end_time)
+                                        @endif
+                                        {{-- {{count($check->check_in_time)}} --}}
+                                        @foreach ($item->attendance as $check)
+                                        
+                                        {!! count($check->check_in_time) !!}
+                                        @endforeach 
+                                    {{-- {{$check->count()}} --}}
                                     </span>
                                 </p>
 
@@ -168,7 +169,7 @@
                         <div class="col-md-3"></div>
                 <div class="col-md-3">
                     <div class="form-group align-right ">
-                        {{ $attendance_view->links() }}
+                        {{--  {{ $attendance_view->links() }}  --}}
                     </div>
                 </div>
             </div>

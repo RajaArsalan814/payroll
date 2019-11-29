@@ -7,14 +7,8 @@
     <link rel="stylesheet" href="{{asset(url(''))}}/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <title>Attendance</title>
     <style>
-            .myyy{
-                background-color: #5cb85c !important;
-                color: white !important;
-                border-color: #5cb85c !important;
-            }
         .class
         {
-            margin-top:-30px;
             margin-left:40%;
         }
         table {
@@ -33,7 +27,7 @@
 
           }
 
-        div.left, div.right, div.a_right {
+        div.left, div.right {
             height:20px;
             float: left;
             padding: 10px;    
@@ -41,28 +35,42 @@
         div.left {
         }
         div.right {
-            margin-left: 18%;
+            margin-left: 10%;
+        }
+       
+
+        div.a_left, div.a_right, div.aa_right {
+            height:20px;
+            float: left;
+        display: block;
+            padding: 10px;    
+        }
+        div.a_left {
+
+            margin-top: -20px;
         }
         div.a_right {
+            margin-left: 10%;
+        }
+        div.aa_right {
             margin-left: 9%;
         }
+
         .summary
         {
             margin-top:10px;
         }
-        .pagination
-        {
-            margin-left: 80%;
-        }
+     
       
     </style>                                                                                                                                                          
 </head>
 <body>
         @foreach ($attendance_view as $item)
+       
     <div class="class">
         <h3 class="align-center">Attendance</h3>
     </div>
-    
+
         <div class="left">
                 <p>Name :   <span>{{$item->name}}</span></p> 
                 <p>Department : <span>{{$item->departments->name}}</span></p>
@@ -139,30 +147,29 @@
            
         </tbody>
     </table>
-    
-    @endforeach
+    {{--  <br><br><br><br>
+    <br><br><br><br>  --}}
+
     <div class="summary">
         <h5>Summary </h5>
     </div>
-    <div class="left" style="font-size:13px;">
+    <div class="a_left" style="font-size:13px;">
             <p>No Of Presents :   <span>0</span></p> 
             <p>No Of Late Arrivals :   <span>0</span></p> 
             <p>No Of Hours(OT) :   <span>0</span></p> 
     </div>
-    <div class="right" style="font-size:13px;">      
+    <div class="a_right" style="font-size:13px;">      
             <p>No Of Absents :   <span>0</span></p> 
             <p>No Of Half Days :   <span>0</span></p> 
             <p>No Of Holidays :   <span>0</span></p> 
     </div>
-    <div class="a_right" style="font-size:13px;">      
+    <div class="aa_right" style="font-size:13px;">      
             <p>No Of Leaves :   <span>0</span></p> 
             <p>No Of Early Departure :   <span>0</span></p> 
             <p>No Of Holidays Half Day :   <span>0</span></p> 
     </div>
-    <div class="pagination">
-        {{ $attendance_view->links() }}
-    </div>
-
+<br><br><br><br><br><br><br><br>
+    @endforeach
 
   
 </body>
